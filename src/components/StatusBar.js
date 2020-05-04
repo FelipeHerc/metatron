@@ -9,4 +9,5 @@ const GeneralStatusBarColor = ({ ...props }) => (
     <StatusBar translucent backgroundColor={backgroundColor} {...props} />
   </View>
 );
+
 export default GeneralStatusBarColor;
