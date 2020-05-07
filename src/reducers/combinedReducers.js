@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import levelUp from './attributesReducer';
+import charAttributes from './attributesReducer';
 
-const rootReducer = combineReducers({ levelUp });
+const rootReducer = combineReducers({ charAttributes });
 
 export default rootReducer;
