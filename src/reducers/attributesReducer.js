@@ -129,6 +129,12 @@ export default function levelUp(state = initialState, action) {
         }
       };
 
+    case 'LVL_RESET':
+      console.log(initialState);
+      return {
+        ...initialState,
+      };
+
     default:
       return state;
   }

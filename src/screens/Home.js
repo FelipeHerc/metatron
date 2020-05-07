@@ -4,11 +4,15 @@ import StatusBar from '../components/StatusBar';
 import { useSelector, useDispatch } from 'react-redux'
 
 export default function Home() {
-    const state = useSelector(state => state)
+    const state = useSelector(state => state);
     const dispatch = useDispatch();
 
     function levelUp(attribute) {
         dispatch({ type: `LVL_UP_${attribute}`})
+    };
+
+    function levelReset() {
+        dispatch({ type: 'LVL_RESET'})
     }
     
     return (
@@ -41,6 +45,7 @@ export default function Home() {
             <Button title="LVL UP INTELLIGENCE" onPress={() => levelUp('INTELLIGENCE')}/>
             <Button title="LVL UP FAITH" onPress={() => levelUp('FAITH')}/>
             <Button title="LVL UP MYSTIC" onPress={() => levelUp('MYSTIC')}/>
+            <Button title="RESET" onPress={() => levelReset()}/>
         </View>
 
     )
