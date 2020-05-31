@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import StatusBar from '../components/StatusBar';
 import { useSelector, useDispatch } from 'react-redux'
 
-export default function Home() {
+export default function Home({ navigation }) {
     const state = useSelector(state => state);
     const dispatch = useDispatch();
 
@@ -17,8 +17,8 @@ export default function Home() {
     
     return (
         <View>
-            <StatusBar />
             <View>
+                <Text>Class: {state.charAttributes.class}</Text>
                 <Text>Level: {state.charAttributes.level}</Text>
                 <Text>Vitality: {state.charAttributes.attributes.vitality}</Text>
                 <Text>Energy: {state.charAttributes.attributes.energy}</Text>
@@ -32,7 +32,7 @@ export default function Home() {
                 <Text>hp: {state.charAttributes.stats.hp}</Text>
                 <Text>stamina: {state.charAttributes.stats.stamina}</Text>
                 <Text>mana: {state.charAttributes.stats.mana}</Text>
-                <Text>slots: {state.charAttributes.stats.slots}</Text>
+                <Text>knowledge: {state.charAttributes.stats.knowledge}</Text>
                 <Text>defense: {state.charAttributes.stats.defense}</Text>
                 <Text>attack: {state.charAttributes.stats.attack}</Text>
                 <Text>luck: {state.charAttributes.stats.luck}</Text>
@@ -46,6 +46,7 @@ export default function Home() {
             <Button title="LVL UP FAITH" onPress={() => levelUp('FAITH')}/>
             <Button title="LVL UP MYSTIC" onPress={() => levelUp('MYSTIC')}/>
             <Button title="RESET" onPress={() => levelReset()}/>
+            <Button title="DEIXA EU ESCOLHE A CLASSE PO" onPress={() => navigation.navigate('SelectClass')}/>
         </View>
 
     )

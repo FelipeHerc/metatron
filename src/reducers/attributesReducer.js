@@ -1,4 +1,7 @@
+import Classes from '../char_specs/Classes';
+
 const initialState = {
+  class: "hollow",
   level: 1,
   attributes: {
     vitality: 1,
@@ -13,14 +16,15 @@ const initialState = {
     hp: 1,
     stamina: 1,
     mana: 1,
-    slots: 1,
+    knowledge: 1,
     defense: 1,
     attack: 1,
     luck: 1,
   }
 };
 
-export default function levelUp(state = initialState, action) {
+export default function char_attributes(state = initialState, action) {
+  console.log(Classes);
   switch (action.type) {
     case 'LVL_UP_VITALITY':
       return {
@@ -93,7 +97,7 @@ export default function levelUp(state = initialState, action) {
         stats: {
           ...state.stats,
           mana: state.stats.mana + 1,
-          slots: state.stats.slots + 1,
+          knowledge: state.stats.knowledge + 1,
         }
       };
 
@@ -108,11 +112,10 @@ export default function levelUp(state = initialState, action) {
         stats: {
           ...state.stats,
           mana: state.stats.mana + 1,
-          slots: state.stats.slots + 1,
+          knowledge: state.stats.knowledge + 1,
           luck: state.stats.luck + 1,
         }
       };
-
 
     case 'LVL_UP_MYSTIC':
       return {
@@ -124,7 +127,7 @@ export default function levelUp(state = initialState, action) {
         },
         stats: {
           ...state.stats,
-          slots: state.stats.slots + 1,
+          knowledge: state.stats.knowledge + 1,
           luck: state.stats.luck + 1,
         }
       };
