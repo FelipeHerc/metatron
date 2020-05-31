@@ -1,7 +1,7 @@
-import React from 'react';
-import { View, StatusBar } from 'react-native';
-import styles from '../styles/StatusBar';
-import colors from '../styles/Colors';
+import React from "react";
+import { View, StatusBar } from "react-native";
+import styles from "../styles/StatusBar";
+import colors from "../styles/Colors";
 const backgroundColor = colors.purple;
 
 const GeneralStatusBarColor = ({ ...props }) => (

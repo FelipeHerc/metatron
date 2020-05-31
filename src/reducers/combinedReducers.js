@@ -1,5 +1,5 @@
-import { combineReducers } from 'redux';
-import charAttributes from './attributesReducer';
+import { combineReducers } from "redux";
+import charAttributes from "./attributesReducer";
 
 const rootReducer = combineReducers({ charAttributes });
 
