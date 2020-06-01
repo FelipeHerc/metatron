@@ -1,11 +1,20 @@
 import React from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
+import Classes from "../char_specs/Classes";
 
 export default function SelectClass({ navigation }) {
   const dispatch = useDispatch();
 
   function chooseClass(charClass) {
+    for (var i = 0; i < Object.keys(Classes[charClass]).length; i++) {
+      const stat = Object.keys(Classes[charClass])[i];
+      const classLvlUpQuantity = Classes[charClass][stat];
+
+      for (var j = 0; j < classLvlUpQuantity; j++) {
+        dispatch({ type: `LVL_UP_${stat.toUpperCase()}` });
+      }
+    }
     dispatch({ type: "CHOOSE_CLASS", class: charClass });
     navigation.navigate("Home");
   }

@@ -1,5 +1,4 @@
-import Classes from "../char_specs/Classes";
-import StatusOnLvlUp from "../char_specs/StatsOnLevelUp";
+import StatsOnLevelUp from "../char_specs/StatsOnLevelUp";
 
 const initialState = {
   class: "hollow",
@@ -36,8 +35,10 @@ export default function char_attributes(state = initialState, action) {
         },
         stats: {
           ...state.stats,
-          hp: state.stats.hp + 1,
-          defense: state.stats.defense + 1,
+          hp: state.stats.hp + StatsOnLevelUp.vitality[state.level + 1].hp,
+          defense:
+            state.stats.defense +
+            StatsOnLevelUp.vitality[state.level + 1].defense,
         },
       };
 
@@ -51,8 +52,12 @@ export default function char_attributes(state = initialState, action) {
         },
         stats: {
           ...state.stats,
-          stamina: state.stats.stamina + 1,
-          defense: state.stats.defense + 1,
+          stamina:
+            state.stats.stamina +
+            StatsOnLevelUp.energy[state.level + 1].stamina,
+          defense:
+            state.stats.defense +
+            StatsOnLevelUp.energy[state.level + 1].defense,
         },
       };
 
@@ -66,8 +71,10 @@ export default function char_attributes(state = initialState, action) {
         },
         stats: {
           ...state.stats,
-          hp: state.stats.hp + 1,
-          attack: state.stats.attack + 1,
+          hp: state.stats.hp + StatsOnLevelUp.strength[state.level + 1].hp,
+          attack:
+            state.stats.attack +
+            StatsOnLevelUp.strength[state.level + 1].attack,
         },
       };
 
@@ -81,8 +88,12 @@ export default function char_attributes(state = initialState, action) {
         },
         stats: {
           ...state.stats,
-          stamina: state.stats.stamina + 1,
-          attack: state.stats.attack + 1,
+          stamina:
+            state.stats.stamina +
+            StatsOnLevelUp.hability[state.level + 1].stamina,
+          attack:
+            state.stats.attack +
+            StatsOnLevelUp.hability[state.level + 1].attack,
         },
       };
 
@@ -96,8 +107,12 @@ export default function char_attributes(state = initialState, action) {
         },
         stats: {
           ...state.stats,
-          mana: state.stats.mana + 1,
-          knowledge: state.stats.knowledge + 1,
+          mana:
+            state.stats.mana +
+            StatsOnLevelUp.intelligence[state.level + 1].mana,
+          knowledge:
+            state.stats.knowledge +
+            StatsOnLevelUp.intelligence[state.level + 1].knowledge,
         },
       };
 
@@ -111,9 +126,8 @@ export default function char_attributes(state = initialState, action) {
         },
         stats: {
           ...state.stats,
-          mana: state.stats.mana + 1,
-          knowledge: state.stats.knowledge + 1,
-          luck: state.stats.luck + 1,
+          mana: state.stats.mana + StatsOnLevelUp.faith[state.level + 1].mana,
+          luck: state.stats.luck + StatsOnLevelUp.faith[state.level + 1].luck,
         },
       };
 
@@ -127,13 +141,14 @@ export default function char_attributes(state = initialState, action) {
         },
         stats: {
           ...state.stats,
-          knowledge: state.stats.knowledge + 1,
-          luck: state.stats.luck + 1,
+          knowledge:
+            state.stats.knowledge +
+            StatsOnLevelUp.mystic[state.level + 1].knowledge,
+          luck: state.stats.luck + StatsOnLevelUp.mystic[state.level + 1].luck,
         },
       };
 
     case "CHOOSE_CLASS":
-      console.log(action);
       return {
         ...state,
         class: action.class,

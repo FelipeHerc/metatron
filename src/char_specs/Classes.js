@@ -1,36 +1,36 @@
 const Classes = {
   warrior: {
     strength: 4,
-    vitality: 4,
+    vitality: 3,
     energy: 2,
   },
 
   mercenary: {
-    hability: 5,
-    energy: 5,
+    hability: 4,
+    energy: 3,
     vitality: 2,
   },
 
   pyromancer: {
-    intelligence: 4,
-    faith: 4,
-    mystic: 2,
+    intelligence: 3,
+    faith: 3,
+    mystic: 3,
   },
 
   sorcerer: {
-    intelligence: 6,
+    intelligence: 5,
     energy: 2,
     mystic: 2,
   },
 
   priest: {
-    faith: 5,
+    faith: 4,
     strength: 3,
     vitality: 2,
   },
 
   cultist: {
-    mystic: 5,
+    mystic: 4,
     vitality: 3,
     energy: 2,
   },

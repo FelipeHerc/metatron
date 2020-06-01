@@ -52,7 +52,10 @@ export default function Home({ navigation }) {
       <Button title="RESET" onPress={() => levelReset()} />
       <Button
         title="DEIXA EU ESCOLHE A CLASSE PO"
-        onPress={() => navigation.navigate("SelectClass")}
+        onPress={() => {
+          levelReset();
+          navigation.navigate("SelectClass");
+        }}
       />
     </View>
   );
