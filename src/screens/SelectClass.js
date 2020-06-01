@@ -16,7 +16,7 @@ export default function SelectClass({ navigation }) {
       }
     }
     dispatch({ type: "CHOOSE_CLASS", class: charClass });
-    navigation.navigate("Home");
+    navigation.navigate("LevelUp");
   }
 
   return (
@@ -29,7 +29,7 @@ export default function SelectClass({ navigation }) {
       <Button title="CULTIST" onPress={() => chooseClass("cultist")} />
       <Button
         title="TANTO FAZ BIXO"
-        onPress={() => navigation.navigate("Home")}
+        onPress={() => navigation.navigate("LevelUp")}
       />
     </View>
   );
