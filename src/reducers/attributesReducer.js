@@ -26,6 +26,7 @@ const initialState = {
 export default function char_attributes(state = initialState, action) {
   switch (action.type) {
     case "LVL_UP_VITALITY":
+      console.log(state);
       return {
         ...state,
         level: state.level + 1,
@@ -35,10 +36,10 @@ export default function char_attributes(state = initialState, action) {
         },
         stats: {
           ...state.stats,
-          hp: state.stats.hp + StatsOnLevelUp.vitality[state.level + 1].hp,
+          hp: state.stats.hp + StatsOnLevelUp.vitality[state.attributes.vitality + 1].hp,
           defense:
             state.stats.defense +
-            StatsOnLevelUp.vitality[state.level + 1].defense,
+            StatsOnLevelUp.vitality[state.attributes.vitality + 1].defense,
         },
       };
 
@@ -54,10 +55,10 @@ export default function char_attributes(state = initialState, action) {
           ...state.stats,
           stamina:
             state.stats.stamina +
-            StatsOnLevelUp.energy[state.level + 1].stamina,
+            StatsOnLevelUp.energy[state.attributes.energy + 1].stamina,
           defense:
             state.stats.defense +
-            StatsOnLevelUp.energy[state.level + 1].defense,
+            StatsOnLevelUp.energy[state.attributes.energy + 1].defense,
         },
       };
 
@@ -71,10 +72,10 @@ export default function char_attributes(state = initialState, action) {
         },
         stats: {
           ...state.stats,
-          hp: state.stats.hp + StatsOnLevelUp.strength[state.level + 1].hp,
+          hp: state.stats.hp + StatsOnLevelUp.strength[state.attributes.strength + 1].hp,
           attack:
             state.stats.attack +
-            StatsOnLevelUp.strength[state.level + 1].attack,
+            StatsOnLevelUp.strength[state.attributes.strength + 1].attack,
         },
       };
 
@@ -90,10 +91,10 @@ export default function char_attributes(state = initialState, action) {
           ...state.stats,
           stamina:
             state.stats.stamina +
-            StatsOnLevelUp.hability[state.level + 1].stamina,
+            StatsOnLevelUp.hability[state.attributes.hability + 1].stamina,
           attack:
             state.stats.attack +
-            StatsOnLevelUp.hability[state.level + 1].attack,
+            StatsOnLevelUp.hability[state.attributes.hability + 1].attack,
         },
       };
 
@@ -109,10 +110,10 @@ export default function char_attributes(state = initialState, action) {
           ...state.stats,
           mana:
             state.stats.mana +
-            StatsOnLevelUp.intelligence[state.level + 1].mana,
+            StatsOnLevelUp.intelligence[state.attributes.intelligence + 1].mana,
           knowledge:
             state.stats.knowledge +
-            StatsOnLevelUp.intelligence[state.level + 1].knowledge,
+            StatsOnLevelUp.intelligence[state.attributes.intelligence + 1].knowledge,
         },
       };
 
@@ -126,8 +127,8 @@ export default function char_attributes(state = initialState, action) {
         },
         stats: {
           ...state.stats,
-          mana: state.stats.mana + StatsOnLevelUp.faith[state.level + 1].mana,
-          luck: state.stats.luck + StatsOnLevelUp.faith[state.level + 1].luck,
+          mana: state.stats.mana + StatsOnLevelUp.faith[state.attributes.faith + 1].mana,
+          luck: state.stats.luck + StatsOnLevelUp.faith[state.attributes.faith + 1].luck,
         },
       };
 
@@ -143,8 +144,8 @@ export default function char_attributes(state = initialState, action) {
           ...state.stats,
           knowledge:
             state.stats.knowledge +
-            StatsOnLevelUp.mystic[state.level + 1].knowledge,
-          luck: state.stats.luck + StatsOnLevelUp.mystic[state.level + 1].luck,
+            StatsOnLevelUp.mystic[state.attributes.mystic + 1].knowledge,
+          luck: state.stats.luck + StatsOnLevelUp.mystic[state.attributes.mystic + 1].luck,
         },
       };
 

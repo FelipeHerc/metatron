@@ -1,25 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import CapitalizeFirstLetter from "../utils/CapitalizeFirstLetter";
+import StatsOnLevelUp from "../char_specs/StatsOnLevelUp";
 
 export default function LevelUp({ navigation }) {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const [charLevel, changedCharLevel] = React.useState(
+  const [charLevel, changedCharLevel] = useState(
     state.charAttributes.level
   );
-  const [vitality, changedVitality] = React.useState(false);
-  const [energy, changedEnergy] = React.useState(false);
-  const [strength, changedStrength] = React.useState(false);
-  const [hability, changedHability] = React.useState(false);
-  const [intelligence, changedIntelligence] = React.useState(false);
-  const [faith, changedFaith] = React.useState(false);
-  const [mystic, changedMystic] = React.useState(false);
+
+  const [vitality, changedVitality] = useState(false);
+  const [energy, changedEnergy] = useState(false);
+  const [strength, changedStrength] = useState(false);
+  const [hability, changedHability] = useState(false);
+  const [intelligence, changedIntelligence] = useState(false);
+  const [faith, changedFaith] = useState(false);
+  const [mystic, changedMystic] = useState(false);
+
+  const [hp, changedHp] = useState(false);
+  const [stamina, changedStamina] = useState(false);
+  const [mana, changedMana] = useState(false);
+  const [knowledge, changedKnowledge] = useState(false);
+  const [defense, changedDefense] = useState(false);
+  const [attack, changedAttack] = useState(false);
+  const [luck, changedLuck] = useState(false);
+
+  useEffect(() => {
+      statsGainOnLevelUp(); 
+  }, [vitality, energy, strength, hability, intelligence, faith, mystic]);
 
   function prepareToLevelUp() {
-    console.log(vitality);
     if (vitality) {
       for (
         var i = 0;
@@ -81,9 +94,20 @@ export default function LevelUp({ navigation }) {
 
   function levelUp(attribute) {
     dispatch({ type: `LVL_UP_${attribute}` });
+    statsReset();
   }
 
-  function attributeReset() {
+  function statsReset(){
+    changedHp(false);
+    changedStamina(false);
+    changedMana(false);
+    changedKnowledge(false);
+    changedDefense(false);
+    changedAttack(false);
+    changedLuck(false);
+  }
+
+  function attributesReset() {
     changedVitality(false);
     changedEnergy(false);
     changedStrength(false);
@@ -91,12 +115,13 @@ export default function LevelUp({ navigation }) {
     changedIntelligence(false);
     changedFaith(false);
     changedMystic(false);
-    changedCharLevel(1);
+    changedCharLevel(state.charAttributes.level);
   }
 
   function levelReset() {
     dispatch({ type: "LVL_RESET" });
-    attributeReset();
+    attributesReset();
+    statsReset
   }
 
   function touchAttribute(attribute) {
@@ -176,6 +201,74 @@ export default function LevelUp({ navigation }) {
     }
   }
 
+  function statsGainOnLevelUp(){
+    var new_hp = 0;
+    var new_stamina = 0;
+    var new_mana = 0;
+    var new_knowledge = 0;
+    var new_defense = 0;
+    var new_attack = 0;
+    var new_luck = 0;
+
+    if(vitality){
+      for(var i = state.charAttributes.attributes.vitality + 1; i <= vitality; i++){
+        new_hp += StatsOnLevelUp.vitality[i].hp;
+        new_defense += StatsOnLevelUp.vitality[i].defense;
+      }
+    }
+
+    if(energy){
+      for(var i = state.charAttributes.attributes.energy + 1; i <= energy; i++){
+        new_stamina += StatsOnLevelUp.energy[i].stamina;
+        new_defense += StatsOnLevelUp.energy[i].defense;
+      }
+    }
+
+    if(strength){
+      for(var i = state.charAttributes.attributes.strength + 1; i <= strength; i++){
+        new_attack += StatsOnLevelUp.strength[i].attack;
+        new_hp += StatsOnLevelUp.strength[i].hp;
+      }
+    }
+
+    if(hability){
+      for(var i = state.charAttributes.attributes.hability + 1; i <= hability; i++){
+        new_attack += StatsOnLevelUp.hability[i].attack;
+        new_stamina += StatsOnLevelUp.hability[i].stamina;
+      }
+    }
+
+    if(intelligence){
+      for(var i = state.charAttributes.attributes.intelligence + 1; i <= intelligence; i++){
+        new_mana += StatsOnLevelUp.intelligence[i].mana;
+        new_knowledge += StatsOnLevelUp.intelligence[i].knowledge;
+      }
+    }
+
+    if(faith){
+      for(var i = state.charAttributes.attributes.faith + 1; i <= faith; i++){
+        new_luck += StatsOnLevelUp.faith[i].luck;
+        new_mana += StatsOnLevelUp.faith[i].mana;
+      }
+    }
+
+    if(mystic){
+      for(var i = state.charAttributes.attributes.mystic + 1; i <= mystic; i++){
+        new_knowledge += StatsOnLevelUp.mystic[i].knowledge;
+        new_luck += StatsOnLevelUp.mystic[i].luck;
+      }
+    }
+
+    changedHp(new_hp);
+    changedStamina(new_stamina);
+    changedDefense(new_defense);
+    changedMana(new_mana);
+    changedKnowledge(new_knowledge);
+    changedDefense(new_defense);
+    changedAttack(new_attack);
+    changedLuck(new_luck);
+  }
+
   return (
     <View>
       <View>
@@ -248,9 +341,36 @@ export default function LevelUp({ navigation }) {
           </View>
           <Button title="+" onPress={() => touchAttribute("mystic")} />
         </View>
-      </View>
-      <Button title="LEVEL UP" onPress={() => prepareToLevelUp()} />
 
+            <View style={styles.row}>
+              <Text>hp: {state.charAttributes.stats.hp} {hp ? ` => +${hp}` : ''}</Text>
+            </View>
+            <View style={styles.row}>
+              <Text>stamina: {state.charAttributes.stats.stamina} {stamina ? ` => +${stamina}` : ''}</Text>
+            </View>
+            <View style={styles.row}>
+              <Text>mana: {state.charAttributes.stats.mana} {mana ? ` => +${mana}` : ''}</Text>
+            </View>
+            <View style={styles.row}>
+              <Text>knowledge: {state.charAttributes.stats.knowledge} {knowledge ? ` => +${knowledge}` : ''}</Text>
+            </View>
+            <View style={styles.row}>
+              <Text>defense: {state.charAttributes.stats.defense} {defense ? ` => +${defense}` : ''}</Text>
+            </View>
+            <View style={styles.row}>
+              <Text>attack: {state.charAttributes.stats.attack} {attack ? ` => +${hp}` : ''}</Text>
+            </View>
+            <View style={styles.row}>
+              <Text>luck: {state.charAttributes.stats.luck} {luck ? ` => +${luck}` : ''}</Text>
+            </View>
+          
+      </View>
+
+      <Button title="RESET ATTRIBUTES" onPress={() => {
+          statsReset();
+          attributesReset();
+        }} />
+      <Button title="LEVEL UP" onPress={() => prepareToLevelUp()} />
       <Button
         title="DEIXA EU ESCOLHE A CLASSE PO"
         onPress={() => {
