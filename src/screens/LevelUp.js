@@ -62,7 +62,7 @@ export default function LevelUp({ navigation }) {
     if (hability) {
       for (
         var i = 0;
-        i < hability - state.charAttributes.attributes.energy;
+        i < hability - state.charAttributes.attributes.hability;
         i++
       )
         levelUp("HABILITY");
@@ -358,7 +358,7 @@ export default function LevelUp({ navigation }) {
               <Text>defense: {state.charAttributes.stats.defense} {defense ? ` => +${defense}` : ''}</Text>
             </View>
             <View style={styles.row}>
-              <Text>attack: {state.charAttributes.stats.attack} {attack ? ` => +${hp}` : ''}</Text>
+              <Text>attack: {state.charAttributes.stats.attack} {attack ? ` => +${attack}` : ''}</Text>
             </View>
             <View style={styles.row}>
               <Text>luck: {state.charAttributes.stats.luck} {luck ? ` => +${luck}` : ''}</Text>

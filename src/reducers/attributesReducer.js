@@ -26,7 +26,6 @@ const initialState = {
 export default function char_attributes(state = initialState, action) {
   switch (action.type) {
     case "LVL_UP_VITALITY":
-      console.log(state);
       return {
         ...state,
         level: state.level + 1,
@@ -156,7 +155,6 @@ export default function char_attributes(state = initialState, action) {
       };
 
     case "LVL_RESET":
-      console.log(initialState);
       return {
         ...initialState,
       };
