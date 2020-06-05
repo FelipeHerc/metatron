@@ -36,9 +36,7 @@ export default function char_attributes(state = initialState, action) {
         stats: {
           ...state.stats,
           hp: state.stats.hp + StatsOnLevelUp.vitality[state.attributes.vitality + 1].hp,
-          defense:
-            state.stats.defense +
-            StatsOnLevelUp.vitality[state.attributes.vitality + 1].defense,
+          defense: state.stats.defense + StatsOnLevelUp.vitality[state.attributes.vitality + 1].defense,
         },
       };
 
@@ -52,12 +50,8 @@ export default function char_attributes(state = initialState, action) {
         },
         stats: {
           ...state.stats,
-          stamina:
-            state.stats.stamina +
-            StatsOnLevelUp.energy[state.attributes.energy + 1].stamina,
-          defense:
-            state.stats.defense +
-            StatsOnLevelUp.energy[state.attributes.energy + 1].defense,
+          stamina: state.stats.stamina + StatsOnLevelUp.energy[state.attributes.energy + 1].stamina,
+          defense: state.stats.defense + StatsOnLevelUp.energy[state.attributes.energy + 1].defense,
         },
       };
 
@@ -72,9 +66,7 @@ export default function char_attributes(state = initialState, action) {
         stats: {
           ...state.stats,
           hp: state.stats.hp + StatsOnLevelUp.strength[state.attributes.strength + 1].hp,
-          attack:
-            state.stats.attack +
-            StatsOnLevelUp.strength[state.attributes.strength + 1].attack,
+          attack: state.stats.attack + StatsOnLevelUp.strength[state.attributes.strength + 1].attack,
         },
       };
 
@@ -88,12 +80,8 @@ export default function char_attributes(state = initialState, action) {
         },
         stats: {
           ...state.stats,
-          stamina:
-            state.stats.stamina +
-            StatsOnLevelUp.hability[state.attributes.hability + 1].stamina,
-          attack:
-            state.stats.attack +
-            StatsOnLevelUp.hability[state.attributes.hability + 1].attack,
+          stamina: state.stats.stamina + StatsOnLevelUp.hability[state.attributes.hability + 1].stamina,
+          attack: state.stats.attack + StatsOnLevelUp.hability[state.attributes.hability + 1].attack,
         },
       };
 
@@ -107,12 +95,8 @@ export default function char_attributes(state = initialState, action) {
         },
         stats: {
           ...state.stats,
-          mana:
-            state.stats.mana +
-            StatsOnLevelUp.intelligence[state.attributes.intelligence + 1].mana,
-          knowledge:
-            state.stats.knowledge +
-            StatsOnLevelUp.intelligence[state.attributes.intelligence + 1].knowledge,
+          mana: state.stats.mana + StatsOnLevelUp.intelligence[state.attributes.intelligence + 1].mana,
+          knowledge: state.stats.knowledge + StatsOnLevelUp.intelligence[state.attributes.intelligence + 1].knowledge,
         },
       };
 
@@ -141,9 +125,7 @@ export default function char_attributes(state = initialState, action) {
         },
         stats: {
           ...state.stats,
-          knowledge:
-            state.stats.knowledge +
-            StatsOnLevelUp.mystic[state.attributes.mystic + 1].knowledge,
+          knowledge: state.stats.knowledge + StatsOnLevelUp.mystic[state.attributes.mystic + 1].knowledge,
           luck: state.stats.luck + StatsOnLevelUp.mystic[state.attributes.mystic + 1].luck,
         },
       };

@@ -11,10 +11,7 @@ export default function Routes() {
   return (
     <NavigationContainer>
       <StatusBar />
-      <Stack.Navigator
-        initialRouteName="SelectClass"
-        screenOptions={{ headerShown: false, animationEnabled: false }}
-      >
+      <Stack.Navigator initialRouteName="SelectClass" screenOptions={{ headerShown: false, animationEnabled: false }}>
         <Stack.Screen name="SelectClass" component={SelectClass} />
         <Stack.Screen name="LevelUp" component={LevelUp} />
       </Stack.Navigator>

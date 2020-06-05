@@ -27,10 +27,7 @@ export default function SelectClass({ navigation }) {
       <Button title="SORCERER" onPress={() => chooseClass("sorcerer")} />
       <Button title="PRIEST" onPress={() => chooseClass("priest")} />
       <Button title="CULTIST" onPress={() => chooseClass("cultist")} />
-      <Button
-        title="TANTO FAZ BIXO"
-        onPress={() => navigation.navigate("LevelUp")}
-      />
+      <Button title="TANTO FAZ BIXO" onPress={() => navigation.navigate("LevelUp")} />
     </View>
   );
 }
