@@ -10,23 +10,23 @@ export default function LevelUp({ navigation }) {
 
   const dispatch = useDispatch();
 
-  const [charLevel, changedCharLevel] = useState(charAttributes.level);
+  const [nextLevel, setNextLevel] = useState(charAttributes.level);
 
-  const [vitality, changedVitality] = useState(false);
-  const [energy, changedEnergy] = useState(false);
-  const [strength, changedStrength] = useState(false);
-  const [hability, changedHability] = useState(false);
-  const [intelligence, changedIntelligence] = useState(false);
-  const [faith, changedFaith] = useState(false);
-  const [mystic, changedMystic] = useState(false);
+  const [vitality, setVitality] = useState(false);
+  const [energy, setEnergy] = useState(false);
+  const [strength, setStrength] = useState(false);
+  const [hability, setHability] = useState(false);
+  const [intelligence, setIntelligence] = useState(false);
+  const [faith, setFaith] = useState(false);
+  const [mystic, setMystic] = useState(false);
 
-  const [hp, changedHp] = useState(false);
-  const [stamina, changedStamina] = useState(false);
-  const [mana, changedMana] = useState(false);
-  const [knowledge, changedKnowledge] = useState(false);
-  const [defense, changedDefense] = useState(false);
-  const [attack, changedAttack] = useState(false);
-  const [luck, changedLuck] = useState(false);
+  const [hp, setHp] = useState(false);
+  const [stamina, setStamina] = useState(false);
+  const [mana, setMana] = useState(false);
+  const [knowledge, setKnowledge] = useState(false);
+  const [defense, setDefense] = useState(false);
+  const [attack, setAttack] = useState(false);
+  const [luck, setLuck] = useState(false);
 
   useEffect(() => {
     statsGainOnLevelUp();
@@ -35,37 +35,37 @@ export default function LevelUp({ navigation }) {
   function prepareToLevelUp() {
     if (vitality) {
       for (var i = 0; i < vitality - charAttributes.attributes.vitality; i++) levelUp("VITALITY");
-      changedVitality(false);
+      setVitality(false);
     }
 
     if (energy) {
       for (var i = 0; i < energy - charAttributes.attributes.energy; i++) levelUp("ENERGY");
-      changedEnergy(false);
+      setEnergy(false);
     }
 
     if (strength) {
       for (var i = 0; i < strength - charAttributes.attributes.strength; i++) levelUp("STRENGTH");
-      changedStrength(false);
+      setStrength(false);
     }
 
     if (hability) {
       for (var i = 0; i < hability - charAttributes.attributes.hability; i++) levelUp("HABILITY");
-      changedHability(false);
+      setHability(false);
     }
 
     if (intelligence) {
       for (var i = 0; i < intelligence - charAttributes.attributes.intelligence; i++) levelUp("INTELLIGENCE");
-      changedIntelligence(false);
+      setIntelligence(false);
     }
 
     if (faith) {
       for (var i = 0; i < faith - charAttributes.attributes.faith; i++) levelUp("FAITH");
-      changedFaith(false);
+      setFaith(false);
     }
 
     if (mystic) {
       for (var i = 0; i < mystic - charAttributes.attributes.mystic; i++) levelUp("MYSTIC");
-      changedMystic(false);
+      setMystic(false);
     }
   }
 
@@ -75,24 +75,24 @@ export default function LevelUp({ navigation }) {
   }
 
   function statsReset() {
-    changedHp(false);
-    changedStamina(false);
-    changedMana(false);
-    changedKnowledge(false);
-    changedDefense(false);
-    changedAttack(false);
-    changedLuck(false);
+    setHp(false);
+    setStamina(false);
+    setMana(false);
+    setKnowledge(false);
+    setDefense(false);
+    setAttack(false);
+    setLuck(false);
   }
 
   function attributesReset() {
-    changedVitality(false);
-    changedEnergy(false);
-    changedStrength(false);
-    changedHability(false);
-    changedIntelligence(false);
-    changedFaith(false);
-    changedMystic(false);
-    changedCharLevel(charAttributes.level);
+    setVitality(false);
+    setEnergy(false);
+    setStrength(false);
+    setHability(false);
+    setIntelligence(false);
+    setFaith(false);
+    setMystic(false);
+    setNextLevel(charAttributes.level);
   }
 
   function levelReset() {
@@ -105,71 +105,71 @@ export default function LevelUp({ navigation }) {
     switch (attribute) {
       case "vitality":
         if (vitality) {
-          changedVitality(vitality + 1);
-          changedCharLevel(charLevel + 1);
+          setVitality(vitality + 1);
+          setNextLevel(nextLevel + 1);
         } else {
-          changedVitality(charAttributes.attributes.vitality + 1);
-          changedCharLevel(charLevel + 1);
+          setVitality(charAttributes.attributes.vitality + 1);
+          setNextLevel(nextLevel + 1);
         }
         break;
 
       case "energy":
         if (energy) {
-          changedEnergy(energy + 1);
-          changedCharLevel(charLevel + 1);
+          setEnergy(energy + 1);
+          setNextLevel(nextLevel + 1);
         } else {
-          changedEnergy(charAttributes.attributes.energy + 1);
-          changedCharLevel(charLevel + 1);
+          setEnergy(charAttributes.attributes.energy + 1);
+          setNextLevel(nextLevel + 1);
         }
         break;
 
       case "strength":
         if (strength) {
-          changedStrength(strength + 1);
-          changedCharLevel(charLevel + 1);
+          setStrength(strength + 1);
+          setNextLevel(nextLevel + 1);
         } else {
-          changedStrength(charAttributes.attributes.strength + 1);
-          changedCharLevel(charLevel + 1);
+          setStrength(charAttributes.attributes.strength + 1);
+          setNextLevel(nextLevel + 1);
         }
         break;
 
       case "hability":
         if (hability) {
-          changedHability(hability + 1);
-          changedCharLevel(charLevel + 1);
+          setHability(hability + 1);
+          setNextLevel(nextLevel + 1);
         } else {
-          changedHability(charAttributes.attributes.hability + 1);
-          changedCharLevel(charLevel + 1);
+          setHability(charAttributes.attributes.hability + 1);
+          setNextLevel(nextLevel + 1);
         }
         break;
 
       case "intelligence":
         if (intelligence) {
-          changedIntelligence(intelligence + 1);
-          changedCharLevel(charLevel + 1);
+          setIntelligence(intelligence + 1);
+          setNextLevel(nextLevel + 1);
         } else {
-          changedIntelligence(charAttributes.attributes.intelligence + 1);
-          changedCharLevel(charLevel + 1);
+          setIntelligence(charAttributes.attributes.intelligence + 1);
+          setNextLevel(nextLevel + 1);
         }
         break;
 
       case "faith":
         if (faith) {
-          changedFaith(faith + 1);
-          changedCharLevel(charLevel + 1);
+          setFaith(faith + 1);
+          setNextLevel(nextLevel + 1);
         } else {
-          changedFaith(charAttributes.attributes.faith + 1);
-          changedCharLevel(charLevel + 1);
+          setFaith(charAttributes.attributes.faith + 1);
+          setNextLevel(nextLevel + 1);
         }
         break;
 
       case "mystic":
         if (mystic) {
-          changedMystic(mystic + 1);
-          changedCharLevel(charLevel + 1);
+          setMystic(mystic + 1);
+          setNextLevel(nextLevel + 1);
         } else {
-          changedMystic(charAttributes.attributes.mystic + 1);
-          changedCharLevel(charLevel + 1);
+          setMystic(charAttributes.attributes.mystic + 1);
+          setNextLevel(nextLevel + 1);
         }
         break;
 
@@ -236,14 +236,14 @@ export default function LevelUp({ navigation }) {
       }
     }
 
-    changedHp(new_hp);
-    changedStamina(new_stamina);
-    changedDefense(new_defense);
-    changedMana(new_mana);
-    changedKnowledge(new_knowledge);
-    changedDefense(new_defense);
-    changedAttack(new_attack);
-    changedLuck(new_luck);
+    setHp(new_hp);
+    setStamina(new_stamina);
+    setDefense(new_defense);
+    setMana(new_mana);
+    setKnowledge(new_knowledge);
+    setDefense(new_defense);
+    setAttack(new_attack);
+    setLuck(new_luck);
   }
 
   return (
@@ -252,7 +252,7 @@ export default function LevelUp({ navigation }) {
         <View style={styles.row}>
           <Text>Level: </Text>
           <Text>{charAttributes.level}</Text>
-          <Text>{charLevel > charAttributes.level ? `=> ${charLevel}` : ""}</Text>
+          <Text>{nextLevel > charAttributes.level ? `=> ${nextLevel}` : ""}</Text>
         </View>
 
         <View style={styles.row}>
