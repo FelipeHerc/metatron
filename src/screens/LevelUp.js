@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import CapitalizeFirstLetter from "../utils/CapitalizeFirstLetter";
 import StatsOnLevelUp from "../char_specs/StatsOnLevelUp";
+import ChakraOnLevelUp from "../char_specs/ChakraOnLevelUp";
 
 export default function LevelUp({ navigation }) {
   const charAttributes = useSelector((state) => state.charAttributes);
@@ -10,7 +11,10 @@ export default function LevelUp({ navigation }) {
 
   const dispatch = useDispatch();
 
+  const [spentChackra, setSpentChackra] = useState(0);
   const [nextLevel, setNextLevel] = useState(charAttributes.level);
+
+  const [nextLevelCost, setNextLevelCost] = useState(ChakraOnLevelUp[nextLevel + 1]);
 
   const [vitality, setVitality] = useState(false);
   const [energy, setEnergy] = useState(false);
@@ -31,6 +35,15 @@ export default function LevelUp({ navigation }) {
   useEffect(() => {
     statsGainOnLevelUp();
   }, [vitality, energy, strength, hability, intelligence, faith, mystic]);
+
+  useEffect(() => {
+    if(nextLevel == charAttributes.level) return
+    var chakraCost = spentChackra;
+    chakraCost += ChakraOnLevelUp[nextLevel];
+    setSpentChackra(chakraCost);
+    setNextLevelCost(ChakraOnLevelUp[nextLevel]);
+    console.log(nextLevelCost);
+  }, [nextLevel]);
 
   function prepareToLevelUp() {
     if (vitality) {
@@ -67,9 +80,13 @@ export default function LevelUp({ navigation }) {
       for (var i = 0; i < mystic - charAttributes.attributes.mystic; i++) levelUp("MYSTIC");
       setMystic(false);
     }
+
+    dispatch({ type: "LOSE_CURRENCY", quantity: spentChackra });
+    setSpentChackra(0);
   }
 
   function levelUp(attribute) {
+    dispatch({ type: "LEVEL_UP_USING_CURRENCY", level: charAttributes.level});
     dispatch({ type: `LVL_UP_${attribute}` });
     statsReset();
   }
@@ -93,6 +110,7 @@ export default function LevelUp({ navigation }) {
     setFaith(false);
     setMystic(false);
     setNextLevel(charAttributes.level);
+    setSpentChackra(0);
   }
 
   function levelReset() {
@@ -264,7 +282,7 @@ export default function LevelUp({ navigation }) {
             <Text>Vitality: {charAttributes.attributes.vitality}</Text>
             <Text>{vitality ? `=> ${vitality}` : ""}</Text>
           </View>
-          <Button title="+" onPress={() => touchAttribute("vitality")} />
+          <Button title="+" disabled={(vitality == 50 || charAttributes.attributes.vitality == 50)} onPress={() => touchAttribute("vitality")} />
         </View>
 
         <View style={styles.row}>
@@ -272,7 +290,7 @@ export default function LevelUp({ navigation }) {
             <Text>Energy: {charAttributes.attributes.energy}</Text>
             <Text>{energy ? `=> ${energy}` : ""}</Text>
           </View>
-          <Button title="+" onPress={() => touchAttribute("energy")} />
+          <Button title="+" disabled={(energy == 50 || charAttributes.attributes.energy == 50)} onPress={() => touchAttribute("energy")} />
         </View>
 
         <View style={styles.row}>
@@ -280,7 +298,7 @@ export default function LevelUp({ navigation }) {
             <Text>Strength: {charAttributes.attributes.strength}</Text>
             <Text>{strength ? `=> ${strength}` : ""}</Text>
           </View>
-          <Button title="+" onPress={() => touchAttribute("strength")} />
+          <Button title="+" disabled={(strength == 50 || charAttributes.attributes.strength == 50)} onPress={() => touchAttribute("strength")} />
         </View>
 
         <View style={styles.row}>
@@ -288,7 +306,7 @@ export default function LevelUp({ navigation }) {
             <Text>Hability: {charAttributes.attributes.hability}</Text>
             <Text>{hability ? `=> ${hability}` : ""}</Text>
           </View>
-          <Button title="+" onPress={() => touchAttribute("hability")} />
+          <Button title="+" disabled={(hability == 50 || charAttributes.attributes.hability == 50)} onPress={() => touchAttribute("hability")} />
         </View>
 
         <View style={styles.row}>
@@ -296,7 +314,7 @@ export default function LevelUp({ navigation }) {
             <Text>Intelligence: {charAttributes.attributes.intelligence}</Text>
             <Text>{intelligence ? `=> ${intelligence}` : ""}</Text>
           </View>
-          <Button title="+" onPress={() => touchAttribute("intelligence")} />
+          <Button title="+" disabled={(intelligence == 50 || charAttributes.attributes.intelligence == 50)} onPress={() => touchAttribute("intelligence")} />
         </View>
 
         <View style={styles.row}>
@@ -304,7 +322,7 @@ export default function LevelUp({ navigation }) {
             <Text>Faith: {charAttributes.attributes.faith}</Text>
             <Text>{faith ? `=> ${faith}` : ""}</Text>
           </View>
-          <Button title="+" onPress={() => touchAttribute("faith")} />
+          <Button title="+" disabled={(faith == 50 || charAttributes.attributes.faith == 50)} onPress={() => touchAttribute("faith")} />
         </View>
 
         <View style={styles.row}>
@@ -312,7 +330,7 @@ export default function LevelUp({ navigation }) {
             <Text>Mystic: {charAttributes.attributes.mystic}</Text>
             <Text>{mystic ? `=> ${mystic}` : ""}</Text>
           </View>
-          <Button title="+" onPress={() => touchAttribute("mystic")} />
+          <Button title="+" disabled={(mystic == 50 || charAttributes.attributes.mystic == 50)} onPress={() => touchAttribute("mystic")} />
         </View>
 
         <View style={styles.row}>
@@ -351,10 +369,12 @@ export default function LevelUp({ navigation }) {
           </Text>
         </View>
         <Text>{chakra.chakra}</Text>
-        <Button title="GANHAR DINHEIROS" onPress={() => dispatch({ type: "EARN_CURRENCY", quantity: 10000 })} />
-        <Button title="perder DINHEIROS" onPress={() => dispatch({ type: "LOSE_CURRENCY", quantity: 10000 })} />
+        <Button title="GANHAR DINHEIROS" onPress={() => dispatch({ type: "EARN_CURRENCY", quantity: 100 })} />
+        <Button title="perder DINHEIROS" onPress={() => dispatch({ type: "LOSE_CURRENCY", quantity: 100 })} />
         <Button title="falir" onPress={() => dispatch({ type: "RESET_CURRENCY" })} />
       </View>
+
+      <Text>custo: {spentChackra}</Text>
 
       <Button
         title="RESET ATTRIBUTES"
@@ -364,6 +384,7 @@ export default function LevelUp({ navigation }) {
         }}
       />
       <Button title="LEVEL UP" onPress={() => prepareToLevelUp()} />
+      <Button title="zerar custo" onPress={() => setSpentChackra(0)} />
       <Button
         title="DEIXA EU ESCOLHE A CLASSE PO"
         onPress={() => {

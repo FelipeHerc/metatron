@@ -1,8 +1,8 @@
-const initialStateCur = {
+const initialState = {
   chakra: 0,
 };
 
-export default function chakra(state = initialStateCur, action) {
+export default function chakra(state = initialState, action) {
   switch (action.type) {
     case "EARN_CURRENCY":
       return {
