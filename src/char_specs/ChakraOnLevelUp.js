@@ -345,4 +345,4 @@ const ChakraOnLevelUp = {
   "344": 344,
 };
 
-export default ChakraOnLevelUp
+export default ChakraOnLevelUp;

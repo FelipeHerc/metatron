@@ -1,204 +1,54 @@
 const Energy = {
-  "1": {
-    stamina: 15,
-    defense: 5,
-  },
-  "2": {
-    stamina: 3,
-    defense: 1,
-  },
-  "3": {
-    stamina: 1,
-    defense: 1,
-  },
-  "4": {
-    stamina: 2,
-    defense: 2,
-  },
-  "5": {
-    stamina: 5,
-    defense: 3,
-  },
-  "6": {
-    stamina: 2,
-    defense: 1,
-  },
-  "7": {
-    stamina: 2,
-    defense: 2,
-  },
-  "8": {
-    stamina: 4,
-    defense: 2,
-  },
-  "9": {
-    stamina: 3,
-    defense: 2,
-  },
-  "10": {
-    stamina: 5,
-    defense: 3,
-  },
-  "11": {
-    stamina: 3,
-    defense: 2,
-  },
-  "12": {
-    stamina: 4,
-    defense: 1,
-  },
-  "13": {
-    stamina: 3,
-    defense: 3,
-  },
-  "14": {
-    stamina: 3,
-    defense: 1,
-  },
-  "15": {
-    stamina: 7,
-    defense: 1,
-  },
-  "16": {
-    stamina: 3,
-    defense: 3,
-  },
-  "17": {
-    stamina: 1,
-    defense: 1,
-  },
-  "18": {
-    stamina: 1,
-    defense: 2,
-  },
-  "19": {
-    stamina: 1,
-    defense: 3,
-  },
-  "20": {
-    stamina: 6,
-    defense: 2,
-  },
-  "21": {
-    stamina: 4,
-    defense: 2,
-  },
-  "22": {
-    stamina: 4,
-    defense: 1,
-  },
-  "23": {
-    stamina: 3,
-    defense: 3,
-  },
-  "24": {
-    stamina: 3,
-    defense: 3,
-  },
-  "25": {
-    stamina: 5,
-    defense: 2,
-  },
-  "26": {
-    stamina: 1,
-    defense: 2,
-  },
-  "27": {
-    stamina: 3,
-    defense: 1,
-  },
-  "28": {
-    stamina: 1,
-    defense: 3,
-  },
-  "29": {
-    stamina: 4,
-    defense: 2,
-  },
-  "30": {
-    stamina: 7,
-    defense: 1,
-  },
-  "31": {
-    stamina: 4,
-    defense: 2,
-  },
-  "32": {
-    stamina: 3,
-    defense: 1,
-  },
-  "33": {
-    stamina: 2,
-    defense: 3,
-  },
-  "34": {
-    stamina: 4,
-    defense: 2,
-  },
-  "35": {
-    stamina: 8,
-    defense: 2,
-  },
-  "36": {
-    stamina: 3,
-    defense: 2,
-  },
-  "37": {
-    stamina: 1,
-    defense: 2,
-  },
-  "38": {
-    stamina: 2,
-    defense: 3,
-  },
-  "39": {
-    stamina: 4,
-    defense: 2,
-  },
-  "40": {
-    stamina: 6,
-    defense: 2,
-  },
-  "41": {
-    stamina: 1,
-    defense: 1,
-  },
-  "42": {
-    stamina: 4,
-    defense: 1,
-  },
-  "43": {
-    stamina: 2,
-    defense: 1,
-  },
-  "44": {
-    stamina: 4,
-    defense: 1,
-  },
-  "45": {
-    stamina: 5,
-    defense: 3,
-  },
-  "46": {
-    stamina: 4,
-    defense: 2,
-  },
-  "47": {
-    stamina: 1,
-    defense: 2,
-  },
-  "48": {
-    stamina: 1,
-    defense: 1,
-  },
-  "49": {
-    stamina: 3,
-    defense: 3,
-  },
-  "50": {
-    stamina: 8,
-    defense: 3,
-  },
+  "1": { stamina: 15, defense: 5 },
+  "2": { stamina: 7, defense: 2 },
+  "3": { stamina: 8, defense: 3 },
+  "4": { stamina: 9, defense: 3 },
+  "5": { stamina: 10, defense: 3 },
+  "6": { stamina: 11, defense: 4 },
+  "7": { stamina: 12, defense: 4 },
+  "8": { stamina: 14, defense: 5 },
+  "9": { stamina: 15, defense: 5 },
+  "10": { stamina: 17, defense: 6 },
+  "11": { stamina: 20, defense: 7 },
+  "12": { stamina: 22, defense: 7 },
+  "13": { stamina: 25, defense: 8 },
+  "14": { stamina: 27, defense: 9 },
+  "15": { stamina: 30, defense: 10 },
+  "16": { stamina: 32, defense: 11 },
+  "17": { stamina: 34, defense: 11 },
+  "18": { stamina: 37, defense: 12 },
+  "19": { stamina: 38, defense: 13 },
+  "20": { stamina: 40, defense: 13 },
+  "21": { stamina: 40, defense: 13 },
+  "22": { stamina: 40, defense: 13 },
+  "23": { stamina: 40, defense: 13 },
+  "24": { stamina: 39, defense: 13 },
+  "25": { stamina: 38, defense: 13 },
+  "26": { stamina: 37, defense: 12 },
+  "27": { stamina: 34, defense: 11 },
+  "28": { stamina: 32, defense: 11 },
+  "29": { stamina: 30, defense: 10 },
+  "30": { stamina: 27, defense: 9 },
+  "31": { stamina: 25, defense: 8 },
+  "32": { stamina: 23, defense: 8 },
+  "33": { stamina: 22, defense: 7 },
+  "34": { stamina: 20, defense: 7 },
+  "35": { stamina: 19, defense: 6 },
+  "36": { stamina: 19, defense: 6 },
+  "37": { stamina: 18, defense: 6 },
+  "38": { stamina: 17, defense: 6 },
+  "39": { stamina: 17, defense: 6 },
+  "40": { stamina: 17, defense: 6 },
+  "41": { stamina: 16, defense: 5 },
+  "42": { stamina: 16, defense: 5 },
+  "43": { stamina: 15, defense: 5 },
+  "44": { stamina: 15, defense: 5 },
+  "45": { stamina: 14, defense: 5 },
+  "46": { stamina: 14, defense: 5 },
+  "47": { stamina: 14, defense: 5 },
+  "48": { stamina: 13, defense: 4 },
+  "49": { stamina: 13, defense: 4 },
+  "50": { stamina: 12, defense: 4 },
 };
 
 export default Energy;

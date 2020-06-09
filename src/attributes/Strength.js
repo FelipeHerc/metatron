@@ -1,204 +1,54 @@
 const Strength = {
-  "1": {
-    attack: 10,
-    hp: 10,
-  },
-  "2": {
-    attack: 3,
-    hp: 1,
-  },
-  "3": {
-    attack: 1,
-    hp: 1,
-  },
-  "4": {
-    attack: 2,
-    hp: 2,
-  },
-  "5": {
-    attack: 5,
-    hp: 3,
-  },
-  "6": {
-    attack: 2,
-    hp: 1,
-  },
-  "7": {
-    attack: 2,
-    hp: 2,
-  },
-  "8": {
-    attack: 4,
-    hp: 2,
-  },
-  "9": {
-    attack: 3,
-    hp: 2,
-  },
-  "10": {
-    attack: 5,
-    hp: 3,
-  },
-  "11": {
-    attack: 3,
-    hp: 2,
-  },
-  "12": {
-    attack: 4,
-    hp: 1,
-  },
-  "13": {
-    attack: 3,
-    hp: 3,
-  },
-  "14": {
-    attack: 3,
-    hp: 1,
-  },
-  "15": {
-    attack: 7,
-    hp: 1,
-  },
-  "16": {
-    attack: 3,
-    hp: 3,
-  },
-  "17": {
-    attack: 1,
-    hp: 1,
-  },
-  "18": {
-    attack: 1,
-    hp: 2,
-  },
-  "19": {
-    attack: 1,
-    hp: 3,
-  },
-  "20": {
-    attack: 6,
-    hp: 2,
-  },
-  "21": {
-    attack: 4,
-    hp: 2,
-  },
-  "22": {
-    attack: 4,
-    hp: 1,
-  },
-  "23": {
-    attack: 3,
-    hp: 3,
-  },
-  "24": {
-    attack: 3,
-    hp: 3,
-  },
-  "25": {
-    attack: 5,
-    hp: 2,
-  },
-  "26": {
-    attack: 1,
-    hp: 2,
-  },
-  "27": {
-    attack: 3,
-    hp: 1,
-  },
-  "28": {
-    attack: 1,
-    hp: 3,
-  },
-  "29": {
-    attack: 4,
-    hp: 2,
-  },
-  "30": {
-    attack: 7,
-    hp: 1,
-  },
-  "31": {
-    attack: 4,
-    hp: 2,
-  },
-  "32": {
-    attack: 3,
-    hp: 1,
-  },
-  "33": {
-    attack: 2,
-    hp: 3,
-  },
-  "34": {
-    attack: 4,
-    hp: 2,
-  },
-  "35": {
-    attack: 8,
-    hp: 2,
-  },
-  "36": {
-    attack: 3,
-    hp: 2,
-  },
-  "37": {
-    attack: 1,
-    hp: 2,
-  },
-  "38": {
-    attack: 2,
-    hp: 3,
-  },
-  "39": {
-    attack: 4,
-    hp: 2,
-  },
-  "40": {
-    attack: 6,
-    hp: 2,
-  },
-  "41": {
-    attack: 1,
-    hp: 1,
-  },
-  "42": {
-    attack: 4,
-    hp: 1,
-  },
-  "43": {
-    attack: 2,
-    hp: 1,
-  },
-  "44": {
-    attack: 4,
-    hp: 1,
-  },
-  "45": {
-    attack: 5,
-    hp: 3,
-  },
-  "46": {
-    attack: 4,
-    hp: 2,
-  },
-  "47": {
-    attack: 1,
-    hp: 2,
-  },
-  "48": {
-    attack: 1,
-    hp: 1,
-  },
-  "49": {
-    attack: 3,
-    hp: 3,
-  },
-  "50": {
-    attack: 8,
-    hp: 3,
-  },
+  "1": { attack: 10, hp: 10 },
+  "2": { attack: 7, hp: 2 },
+  "3": { attack: 8, hp: 3 },
+  "4": { attack: 9, hp: 3 },
+  "5": { attack: 10, hp: 3 },
+  "6": { attack: 11, hp: 4 },
+  "7": { attack: 12, hp: 4 },
+  "8": { attack: 14, hp: 5 },
+  "9": { attack: 15, hp: 5 },
+  "10": { attack: 17, hp: 6 },
+  "11": { attack: 20, hp: 7 },
+  "12": { attack: 22, hp: 7 },
+  "13": { attack: 25, hp: 8 },
+  "14": { attack: 27, hp: 9 },
+  "15": { attack: 30, hp: 10 },
+  "16": { attack: 32, hp: 11 },
+  "17": { attack: 34, hp: 11 },
+  "18": { attack: 37, hp: 12 },
+  "19": { attack: 38, hp: 13 },
+  "20": { attack: 40, hp: 13 },
+  "21": { attack: 40, hp: 13 },
+  "22": { attack: 40, hp: 13 },
+  "23": { attack: 40, hp: 13 },
+  "24": { attack: 39, hp: 13 },
+  "25": { attack: 38, hp: 13 },
+  "26": { attack: 37, hp: 12 },
+  "27": { attack: 34, hp: 11 },
+  "28": { attack: 32, hp: 11 },
+  "29": { attack: 30, hp: 10 },
+  "30": { attack: 27, hp: 9 },
+  "31": { attack: 25, hp: 8 },
+  "32": { attack: 23, hp: 8 },
+  "33": { attack: 22, hp: 7 },
+  "34": { attack: 20, hp: 7 },
+  "35": { attack: 19, hp: 6 },
+  "36": { attack: 19, hp: 6 },
+  "37": { attack: 18, hp: 6 },
+  "38": { attack: 17, hp: 6 },
+  "39": { attack: 17, hp: 6 },
+  "40": { attack: 17, hp: 6 },
+  "41": { attack: 16, hp: 5 },
+  "42": { attack: 16, hp: 5 },
+  "43": { attack: 15, hp: 5 },
+  "44": { attack: 15, hp: 5 },
+  "45": { attack: 14, hp: 5 },
+  "46": { attack: 14, hp: 5 },
+  "47": { attack: 14, hp: 5 },
+  "48": { attack: 13, hp: 4 },
+  "49": { attack: 13, hp: 4 },
+  "50": { attack: 12, hp: 4 },
 };
 
 export default Strength;

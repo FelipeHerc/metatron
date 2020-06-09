@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
-import CapitalizeFirstLetter from "../utils/CapitalizeFirstLetter";
 import StatsOnLevelUp from "../char_specs/StatsOnLevelUp";
 import ChakraOnLevelUp from "../char_specs/ChakraOnLevelUp";
+import AttributeLevelUp from "../components/AttributeLevelUp";
 
 export default function LevelUp({ navigation }) {
+  const LEVEL_CAP = 50;
   const charAttributes = useSelector((state) => state.charAttributes);
   const chakra = useSelector((state) => state.chakra);
 
@@ -13,8 +14,9 @@ export default function LevelUp({ navigation }) {
 
   const [spentChackra, setSpentChackra] = useState(0);
   const [nextLevel, setNextLevel] = useState(charAttributes.level);
+  const [nextLevelCost, setNextLevelCost] = useState(ChakraOnLevelUp[charAttributes.level + 1]);
 
-  const [nextLevelCost, setNextLevelCost] = useState(ChakraOnLevelUp[nextLevel + 1]);
+  console.log(nextLevelCost);
 
   const [vitality, setVitality] = useState(false);
   const [energy, setEnergy] = useState(false);
@@ -37,12 +39,11 @@ export default function LevelUp({ navigation }) {
   }, [vitality, energy, strength, hability, intelligence, faith, mystic]);
 
   useEffect(() => {
-    if(nextLevel == charAttributes.level) return
+    if (nextLevel == charAttributes.level) return;
     var chakraCost = spentChackra;
     chakraCost += ChakraOnLevelUp[nextLevel];
     setSpentChackra(chakraCost);
     setNextLevelCost(ChakraOnLevelUp[nextLevel]);
-    console.log(nextLevelCost);
   }, [nextLevel]);
 
   function prepareToLevelUp() {
@@ -86,7 +87,7 @@ export default function LevelUp({ navigation }) {
   }
 
   function levelUp(attribute) {
-    dispatch({ type: "LEVEL_UP_USING_CURRENCY", level: charAttributes.level});
+    dispatch({ type: "LEVEL_UP_USING_CURRENCY", level: charAttributes.level });
     dispatch({ type: `LVL_UP_${attribute}` });
     statsReset();
   }
@@ -264,115 +265,128 @@ export default function LevelUp({ navigation }) {
     setLuck(new_luck);
   }
 
+  function denyLevelUp(attribute) {
+    return nextLevelCost + spentChackra > chakra.chakra;
+  }
+
   return (
     <View>
-      <View>
-        <View style={styles.row}>
-          <Text>Level: </Text>
-          <Text>{charAttributes.level}</Text>
-          <Text>{nextLevel > charAttributes.level ? `=> ${nextLevel}` : ""}</Text>
-        </View>
-
-        <View style={styles.row}>
-          <Text>Class: {charAttributes.class}</Text>
-        </View>
-
-        <View style={styles.row}>
-          <View style={styles.row}>
-            <Text>Vitality: {charAttributes.attributes.vitality}</Text>
-            <Text>{vitality ? `=> ${vitality}` : ""}</Text>
-          </View>
-          <Button title="+" disabled={(vitality == 50 || charAttributes.attributes.vitality == 50)} onPress={() => touchAttribute("vitality")} />
-        </View>
-
-        <View style={styles.row}>
-          <View style={styles.row}>
-            <Text>Energy: {charAttributes.attributes.energy}</Text>
-            <Text>{energy ? `=> ${energy}` : ""}</Text>
-          </View>
-          <Button title="+" disabled={(energy == 50 || charAttributes.attributes.energy == 50)} onPress={() => touchAttribute("energy")} />
-        </View>
-
-        <View style={styles.row}>
-          <View style={styles.row}>
-            <Text>Strength: {charAttributes.attributes.strength}</Text>
-            <Text>{strength ? `=> ${strength}` : ""}</Text>
-          </View>
-          <Button title="+" disabled={(strength == 50 || charAttributes.attributes.strength == 50)} onPress={() => touchAttribute("strength")} />
-        </View>
-
-        <View style={styles.row}>
-          <View style={styles.row}>
-            <Text>Hability: {charAttributes.attributes.hability}</Text>
-            <Text>{hability ? `=> ${hability}` : ""}</Text>
-          </View>
-          <Button title="+" disabled={(hability == 50 || charAttributes.attributes.hability == 50)} onPress={() => touchAttribute("hability")} />
-        </View>
-
-        <View style={styles.row}>
-          <View style={styles.row}>
-            <Text>Intelligence: {charAttributes.attributes.intelligence}</Text>
-            <Text>{intelligence ? `=> ${intelligence}` : ""}</Text>
-          </View>
-          <Button title="+" disabled={(intelligence == 50 || charAttributes.attributes.intelligence == 50)} onPress={() => touchAttribute("intelligence")} />
-        </View>
-
-        <View style={styles.row}>
-          <View style={styles.row}>
-            <Text>Faith: {charAttributes.attributes.faith}</Text>
-            <Text>{faith ? `=> ${faith}` : ""}</Text>
-          </View>
-          <Button title="+" disabled={(faith == 50 || charAttributes.attributes.faith == 50)} onPress={() => touchAttribute("faith")} />
-        </View>
-
-        <View style={styles.row}>
-          <View style={styles.row}>
-            <Text>Mystic: {charAttributes.attributes.mystic}</Text>
-            <Text>{mystic ? `=> ${mystic}` : ""}</Text>
-          </View>
-          <Button title="+" disabled={(mystic == 50 || charAttributes.attributes.mystic == 50)} onPress={() => touchAttribute("mystic")} />
-        </View>
-
-        <View style={styles.row}>
-          <Text>
-            hp: {charAttributes.stats.hp} {hp ? ` => +${hp}` : ""}
-          </Text>
-        </View>
-        <View style={styles.row}>
-          <Text>
-            stamina: {charAttributes.stats.stamina} {stamina ? ` => +${stamina}` : ""}
-          </Text>
-        </View>
-        <View style={styles.row}>
-          <Text>
-            mana: {charAttributes.stats.mana} {mana ? ` => +${mana}` : ""}
-          </Text>
-        </View>
-        <View style={styles.row}>
-          <Text>
-            knowledge: {charAttributes.stats.knowledge} {knowledge ? ` => +${knowledge}` : ""}
-          </Text>
-        </View>
-        <View style={styles.row}>
-          <Text>
-            defense: {charAttributes.stats.defense} {defense ? ` => +${defense}` : ""}
-          </Text>
-        </View>
-        <View style={styles.row}>
-          <Text>
-            attack: {charAttributes.stats.attack} {attack ? ` => +${attack}` : ""}
-          </Text>
-        </View>
-        <View style={styles.row}>
-          <Text>
-            luck: {charAttributes.stats.luck} {luck ? ` => +${luck}` : ""}
-          </Text>
-        </View>
-        <Text>{chakra.chakra}</Text>
-        <Button title="GANHAR DINHEIROS" onPress={() => dispatch({ type: "EARN_CURRENCY", quantity: 100 })} />
-        <Button title="perder DINHEIROS" onPress={() => dispatch({ type: "LOSE_CURRENCY", quantity: 100 })} />
-        <Button title="falir" onPress={() => dispatch({ type: "RESET_CURRENCY" })} />
+      <View style={styles.row}>
+        <Text>Level: </Text>
+        <Text>{charAttributes.level}</Text>
+        <Text>{nextLevel > charAttributes.level ? `=> ${nextLevel}` : ""}</Text>
       </View>
+
+      <View style={styles.row}>
+        <Text>{`Seus dinheiros: ${chakra.chakra}`}</Text>
+      </View>
+
+      <View style={styles.row}>
+        <Text>{`Custo para o proximo level: ${nextLevelCost}`}</Text>
+      </View>
+
+      <View style={styles.row}>
+        <Text>Class: {charAttributes.class}</Text>
+      </View>
+      <View style={styles.row}>
+        <View>
+          <AttributeLevelUp
+            currentAttributeLevel={charAttributes.attributes.vitality}
+            nextAttributeLevel={vitality}
+            attribute="vitality"
+            denyLevelUp={denyLevelUp("vitality")}
+            touchAttribute={() => touchAttribute("vitality")}
+          />
+
+          <AttributeLevelUp
+            currentAttributeLevel={charAttributes.attributes.energy}
+            nextAttributeLevel={energy}
+            attribute="energy"
+            denyLevelUp={denyLevelUp("energy")}
+            touchAttribute={() => touchAttribute("energy")}
+          />
+
+          <AttributeLevelUp
+            currentAttributeLevel={charAttributes.attributes.strength}
+            nextAttributeLevel={strength}
+            attribute="strength"
+            denyLevelUp={denyLevelUp("strength")}
+            touchAttribute={() => touchAttribute("strength")}
+          />
+
+          <AttributeLevelUp
+            currentAttributeLevel={charAttributes.attributes.hability}
+            nextAttributeLevel={hability}
+            attribute="hability"
+            denyLevelUp={denyLevelUp("hability")}
+            touchAttribute={() => touchAttribute("hability")}
+          />
+
+          <AttributeLevelUp
+            currentAttributeLevel={charAttributes.attributes.intelligence}
+            nextAttributeLevel={intelligence}
+            attribute="intelligence"
+            denyLevelUp={denyLevelUp("intelligence")}
+            touchAttribute={() => touchAttribute("intelligence")}
+          />
+
+          <AttributeLevelUp
+            currentAttributeLevel={charAttributes.attributes.faith}
+            nextAttributeLevel={faith}
+            attribute="faith"
+            denyLevelUp={denyLevelUp("faith")}
+            touchAttribute={() => touchAttribute("faith")}
+          />
+
+          <AttributeLevelUp
+            currentAttributeLevel={charAttributes.attributes.mystic}
+            nextAttributeLevel={mystic}
+            attribute="mystic"
+            denyLevelUp={denyLevelUp("mystic")}
+            touchAttribute={() => touchAttribute("mystic")}
+          />
+        </View>
+        <View>
+          <View style={styles.row}>
+            <Text>
+              hp: {charAttributes.stats.hp} {hp ? ` => +${hp}` : ""}
+            </Text>
+          </View>
+          <View style={styles.row}>
+            <Text>
+              stamina: {charAttributes.stats.stamina} {stamina ? ` => +${stamina}` : ""}
+            </Text>
+          </View>
+          <View style={styles.row}>
+            <Text>
+              mana: {charAttributes.stats.mana} {mana ? ` => +${mana}` : ""}
+            </Text>
+          </View>
+          <View style={styles.row}>
+            <Text>
+              knowledge: {charAttributes.stats.knowledge} {knowledge ? ` => +${knowledge}` : ""}
+            </Text>
+          </View>
+          <View style={styles.row}>
+            <Text>
+              defense: {charAttributes.stats.defense} {defense ? ` => +${defense}` : ""}
+            </Text>
+          </View>
+          <View style={styles.row}>
+            <Text>
+              attack: {charAttributes.stats.attack} {attack ? ` => +${attack}` : ""}
+            </Text>
+          </View>
+          <View style={styles.row}>
+            <Text>
+              luck: {charAttributes.stats.luck} {luck ? ` => +${luck}` : ""}
+            </Text>
+          </View>
+        </View>
+      </View>
+      <Button title="GANHAR DINHEIROS" onPress={() => dispatch({ type: "EARN_CURRENCY", quantity: 100 })} />
+      <Button title="perder DINHEIROS" onPress={() => dispatch({ type: "LOSE_CURRENCY", quantity: 100 })} />
+      <Button title="falir" onPress={() => dispatch({ type: "RESET_CURRENCY" })} />
 
       <Text>custo: {spentChackra}</Text>
 

@@ -1,204 +1,54 @@
 const Intelligence = {
-  "1": {
-    mana: 7,
-    knowledge: 3,
-  },
-  "2": {
-    mana: 3,
-    knowledge: 1,
-  },
-  "3": {
-    mana: 1,
-    knowledge: 1,
-  },
-  "4": {
-    mana: 2,
-    knowledge: 2,
-  },
-  "5": {
-    mana: 5,
-    knowledge: 3,
-  },
-  "6": {
-    mana: 2,
-    knowledge: 1,
-  },
-  "7": {
-    mana: 2,
-    knowledge: 2,
-  },
-  "8": {
-    mana: 4,
-    knowledge: 2,
-  },
-  "9": {
-    mana: 3,
-    knowledge: 2,
-  },
-  "10": {
-    mana: 5,
-    knowledge: 3,
-  },
-  "11": {
-    mana: 3,
-    knowledge: 2,
-  },
-  "12": {
-    mana: 4,
-    knowledge: 1,
-  },
-  "13": {
-    mana: 3,
-    knowledge: 3,
-  },
-  "14": {
-    mana: 3,
-    knowledge: 1,
-  },
-  "15": {
-    mana: 7,
-    knowledge: 1,
-  },
-  "16": {
-    mana: 3,
-    knowledge: 3,
-  },
-  "17": {
-    mana: 1,
-    knowledge: 1,
-  },
-  "18": {
-    mana: 1,
-    knowledge: 2,
-  },
-  "19": {
-    mana: 1,
-    knowledge: 3,
-  },
-  "20": {
-    mana: 6,
-    knowledge: 2,
-  },
-  "21": {
-    mana: 4,
-    knowledge: 2,
-  },
-  "22": {
-    mana: 4,
-    knowledge: 1,
-  },
-  "23": {
-    mana: 3,
-    knowledge: 3,
-  },
-  "24": {
-    mana: 3,
-    knowledge: 3,
-  },
-  "25": {
-    mana: 5,
-    knowledge: 2,
-  },
-  "26": {
-    mana: 1,
-    knowledge: 2,
-  },
-  "27": {
-    mana: 3,
-    knowledge: 1,
-  },
-  "28": {
-    mana: 1,
-    knowledge: 3,
-  },
-  "29": {
-    mana: 4,
-    knowledge: 2,
-  },
-  "30": {
-    mana: 7,
-    knowledge: 1,
-  },
-  "31": {
-    mana: 4,
-    knowledge: 2,
-  },
-  "32": {
-    mana: 3,
-    knowledge: 1,
-  },
-  "33": {
-    mana: 2,
-    knowledge: 3,
-  },
-  "34": {
-    mana: 4,
-    knowledge: 2,
-  },
-  "35": {
-    mana: 8,
-    knowledge: 2,
-  },
-  "36": {
-    mana: 3,
-    knowledge: 2,
-  },
-  "37": {
-    mana: 1,
-    knowledge: 2,
-  },
-  "38": {
-    mana: 2,
-    knowledge: 3,
-  },
-  "39": {
-    mana: 4,
-    knowledge: 2,
-  },
-  "40": {
-    mana: 6,
-    knowledge: 2,
-  },
-  "41": {
-    mana: 1,
-    knowledge: 1,
-  },
-  "42": {
-    mana: 4,
-    knowledge: 1,
-  },
-  "43": {
-    mana: 2,
-    knowledge: 1,
-  },
-  "44": {
-    mana: 4,
-    knowledge: 1,
-  },
-  "45": {
-    mana: 5,
-    knowledge: 3,
-  },
-  "46": {
-    mana: 4,
-    knowledge: 2,
-  },
-  "47": {
-    mana: 1,
-    knowledge: 2,
-  },
-  "48": {
-    mana: 1,
-    knowledge: 1,
-  },
-  "49": {
-    mana: 3,
-    knowledge: 3,
-  },
-  "50": {
-    mana: 8,
-    knowledge: 3,
-  },
+  "1": { mana: 50, knowledge: 3 },
+  "2": { mana: 7, knowledge: 2 },
+  "3": { mana: 8, knowledge: 3 },
+  "4": { mana: 9, knowledge: 3 },
+  "5": { mana: 10, knowledge: 3 },
+  "6": { mana: 11, knowledge: 4 },
+  "7": { mana: 12, knowledge: 4 },
+  "8": { mana: 14, knowledge: 5 },
+  "9": { mana: 15, knowledge: 5 },
+  "10": { mana: 17, knowledge: 6 },
+  "11": { mana: 20, knowledge: 7 },
+  "12": { mana: 22, knowledge: 7 },
+  "13": { mana: 25, knowledge: 8 },
+  "14": { mana: 27, knowledge: 9 },
+  "15": { mana: 30, knowledge: 10 },
+  "16": { mana: 32, knowledge: 11 },
+  "17": { mana: 34, knowledge: 11 },
+  "18": { mana: 37, knowledge: 12 },
+  "19": { mana: 38, knowledge: 13 },
+  "20": { mana: 40, knowledge: 13 },
+  "21": { mana: 40, knowledge: 13 },
+  "22": { mana: 40, knowledge: 13 },
+  "23": { mana: 40, knowledge: 13 },
+  "24": { mana: 39, knowledge: 13 },
+  "25": { mana: 38, knowledge: 13 },
+  "26": { mana: 37, knowledge: 12 },
+  "27": { mana: 34, knowledge: 11 },
+  "28": { mana: 32, knowledge: 11 },
+  "29": { mana: 30, knowledge: 10 },
+  "30": { mana: 27, knowledge: 9 },
+  "31": { mana: 25, knowledge: 8 },
+  "32": { mana: 23, knowledge: 8 },
+  "33": { mana: 22, knowledge: 7 },
+  "34": { mana: 20, knowledge: 7 },
+  "35": { mana: 19, knowledge: 6 },
+  "36": { mana: 19, knowledge: 6 },
+  "37": { mana: 18, knowledge: 6 },
+  "38": { mana: 17, knowledge: 6 },
+  "39": { mana: 17, knowledge: 6 },
+  "40": { mana: 17, knowledge: 6 },
+  "41": { mana: 16, knowledge: 5 },
+  "42": { mana: 16, knowledge: 5 },
+  "43": { mana: 15, knowledge: 5 },
+  "44": { mana: 15, knowledge: 5 },
+  "45": { mana: 14, knowledge: 5 },
+  "46": { mana: 14, knowledge: 5 },
+  "47": { mana: 14, knowledge: 5 },
+  "48": { mana: 13, knowledge: 4 },
+  "49": { mana: 13, knowledge: 4 },
+  "50": { mana: 12, knowledge: 4 },
 };
 
 export default Intelligence;

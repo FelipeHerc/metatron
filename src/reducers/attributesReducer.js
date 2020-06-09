@@ -24,7 +24,6 @@ const initialState = {
 };
 
 export default function char_attributes(state = initialState, action) {
-
   switch (action.type) {
     case "LVL_UP_VITALITY":
       return {

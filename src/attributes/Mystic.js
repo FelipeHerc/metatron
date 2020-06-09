@@ -1,204 +1,54 @@
 const Mystic = {
-  "1": {
-    knowledge: 7,
-    luck: 3,
-  },
-  "2": {
-    knowledge: 3,
-    luck: 1,
-  },
-  "3": {
-    knowledge: 1,
-    luck: 1,
-  },
-  "4": {
-    knowledge: 2,
-    luck: 2,
-  },
-  "5": {
-    knowledge: 5,
-    luck: 3,
-  },
-  "6": {
-    knowledge: 2,
-    luck: 1,
-  },
-  "7": {
-    knowledge: 2,
-    luck: 2,
-  },
-  "8": {
-    knowledge: 4,
-    luck: 2,
-  },
-  "9": {
-    knowledge: 3,
-    luck: 2,
-  },
-  "10": {
-    knowledge: 5,
-    luck: 3,
-  },
-  "11": {
-    knowledge: 3,
-    luck: 2,
-  },
-  "12": {
-    knowledge: 4,
-    luck: 1,
-  },
-  "13": {
-    knowledge: 3,
-    luck: 3,
-  },
-  "14": {
-    knowledge: 3,
-    luck: 1,
-  },
-  "15": {
-    knowledge: 7,
-    luck: 1,
-  },
-  "16": {
-    knowledge: 3,
-    luck: 3,
-  },
-  "17": {
-    knowledge: 1,
-    luck: 1,
-  },
-  "18": {
-    knowledge: 1,
-    luck: 2,
-  },
-  "19": {
-    knowledge: 1,
-    luck: 3,
-  },
-  "20": {
-    knowledge: 6,
-    luck: 2,
-  },
-  "21": {
-    knowledge: 4,
-    luck: 2,
-  },
-  "22": {
-    knowledge: 4,
-    luck: 1,
-  },
-  "23": {
-    knowledge: 3,
-    luck: 3,
-  },
-  "24": {
-    knowledge: 3,
-    luck: 3,
-  },
-  "25": {
-    knowledge: 5,
-    luck: 2,
-  },
-  "26": {
-    knowledge: 1,
-    luck: 2,
-  },
-  "27": {
-    knowledge: 3,
-    luck: 1,
-  },
-  "28": {
-    knowledge: 1,
-    luck: 3,
-  },
-  "29": {
-    knowledge: 4,
-    luck: 2,
-  },
-  "30": {
-    knowledge: 7,
-    luck: 1,
-  },
-  "31": {
-    knowledge: 4,
-    luck: 2,
-  },
-  "32": {
-    knowledge: 3,
-    luck: 1,
-  },
-  "33": {
-    knowledge: 2,
-    luck: 3,
-  },
-  "34": {
-    knowledge: 4,
-    luck: 2,
-  },
-  "35": {
-    knowledge: 8,
-    luck: 2,
-  },
-  "36": {
-    knowledge: 3,
-    luck: 2,
-  },
-  "37": {
-    knowledge: 1,
-    luck: 2,
-  },
-  "38": {
-    knowledge: 2,
-    luck: 3,
-  },
-  "39": {
-    knowledge: 4,
-    luck: 2,
-  },
-  "40": {
-    knowledge: 6,
-    luck: 2,
-  },
-  "41": {
-    knowledge: 1,
-    luck: 1,
-  },
-  "42": {
-    knowledge: 4,
-    luck: 1,
-  },
-  "43": {
-    knowledge: 2,
-    luck: 1,
-  },
-  "44": {
-    knowledge: 4,
-    luck: 1,
-  },
-  "45": {
-    knowledge: 5,
-    luck: 3,
-  },
-  "46": {
-    knowledge: 4,
-    luck: 2,
-  },
-  "47": {
-    knowledge: 1,
-    luck: 2,
-  },
-  "48": {
-    knowledge: 1,
-    luck: 1,
-  },
-  "49": {
-    knowledge: 3,
-    luck: 3,
-  },
-  "50": {
-    knowledge: 8,
-    luck: 3,
-  },
+  "1": { knowledge: 7, luck: 3 },
+  "2": { knowledge: 7, luck: 2 },
+  "3": { knowledge: 8, luck: 3 },
+  "4": { knowledge: 9, luck: 3 },
+  "5": { knowledge: 10, luck: 3 },
+  "6": { knowledge: 11, luck: 4 },
+  "7": { knowledge: 12, luck: 4 },
+  "8": { knowledge: 14, luck: 5 },
+  "9": { knowledge: 15, luck: 5 },
+  "10": { knowledge: 17, luck: 6 },
+  "11": { knowledge: 20, luck: 7 },
+  "12": { knowledge: 22, luck: 7 },
+  "13": { knowledge: 25, luck: 8 },
+  "14": { knowledge: 27, luck: 9 },
+  "15": { knowledge: 30, luck: 10 },
+  "16": { knowledge: 32, luck: 11 },
+  "17": { knowledge: 34, luck: 11 },
+  "18": { knowledge: 37, luck: 12 },
+  "19": { knowledge: 38, luck: 13 },
+  "20": { knowledge: 40, luck: 13 },
+  "21": { knowledge: 40, luck: 13 },
+  "22": { knowledge: 40, luck: 13 },
+  "23": { knowledge: 40, luck: 13 },
+  "24": { knowledge: 39, luck: 13 },
+  "25": { knowledge: 38, luck: 13 },
+  "26": { knowledge: 37, luck: 12 },
+  "27": { knowledge: 34, luck: 11 },
+  "28": { knowledge: 32, luck: 11 },
+  "29": { knowledge: 30, luck: 10 },
+  "30": { knowledge: 27, luck: 9 },
+  "31": { knowledge: 25, luck: 8 },
+  "32": { knowledge: 23, luck: 8 },
+  "33": { knowledge: 22, luck: 7 },
+  "34": { knowledge: 20, luck: 7 },
+  "35": { knowledge: 19, luck: 6 },
+  "36": { knowledge: 19, luck: 6 },
+  "37": { knowledge: 18, luck: 6 },
+  "38": { knowledge: 17, luck: 6 },
+  "39": { knowledge: 17, luck: 6 },
+  "40": { knowledge: 17, luck: 6 },
+  "41": { knowledge: 16, luck: 5 },
+  "42": { knowledge: 16, luck: 5 },
+  "43": { knowledge: 15, luck: 5 },
+  "44": { knowledge: 15, luck: 5 },
+  "45": { knowledge: 14, luck: 5 },
+  "46": { knowledge: 14, luck: 5 },
+  "47": { knowledge: 14, luck: 5 },
+  "48": { knowledge: 13, luck: 4 },
+  "49": { knowledge: 13, luck: 4 },
+  "50": { knowledge: 12, luck: 4 },
 };
 
 export default Mystic;
