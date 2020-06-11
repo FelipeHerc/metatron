@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import { StyleSheet, Text, View, Button } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import StatsOnLevelUp from "../char_specs/StatsOnLevelUp";
 import ChakraOnLevelUp from "../char_specs/ChakraOnLevelUp";
 import AttributeLevelUp from "../components/AttributeLevelUp";
 
 export default function LevelUp({ navigation }) {
-  const LEVEL_CAP = 50;
   const charAttributes = useSelector((state) => state.charAttributes);
   const chakra = useSelector((state) => state.chakra);
 
@@ -384,7 +383,7 @@ export default function LevelUp({ navigation }) {
           </View>
         </View>
       </View>
-      <Button title="GANHAR DINHEIROS" onPress={() => dispatch({ type: "EARN_CURRENCY", quantity: 100 })} />
+      <Button title="GANHAR DINHEIROS" onPress={() => dispatch({ type: "EARN_CURRENCY", quantity: 10000 })} />
       <Button title="perder DINHEIROS" onPress={() => dispatch({ type: "LOSE_CURRENCY", quantity: 100 })} />
       <Button title="falir" onPress={() => dispatch({ type: "RESET_CURRENCY" })} />
 

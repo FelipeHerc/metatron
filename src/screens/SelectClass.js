@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Button, Image } from "react-native";
-import { useSelector, useDispatch } from "react-redux";
+import { StyleSheet, Text, View } from "react-native";
+import { useDispatch } from "react-redux";
 import Classes from "../char_specs/Classes";
 import ClassCard from "../components/ClassCard";
 import Styles from "../styles/Styles";
 import Sizes from "../styles/Sizes";
 import Colors from "../styles/Colors";
 import { TouchableHighlight } from "react-native-gesture-handler";
+import Button from "../components/Button";
 
 export default function SelectClass({ navigation }) {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ export default function SelectClass({ navigation }) {
   const [selectedClass, setSelectedClass] = useState();
 
   function chooseClass(charClass) {
-    let chosenClass = charClass.toLowerCase();
+    const chosenClass = charClass.toLowerCase();
     for (var i = 0; i < Object.keys(Classes[chosenClass]).length; i++) {
       const stat = Object.keys(Classes[chosenClass])[i];
       const classLvlUpQuantity = Classes[chosenClass][stat];
@@ -24,16 +25,19 @@ export default function SelectClass({ navigation }) {
       }
     }
     dispatch({ type: "CHOOSE_CLASS", class: chosenClass });
-    navigation.navigate("LevelUp");
+    navigation.navigate("Home");
   }
 
   function classText(className) {
-    if (className == "Cultist") return <Text style={styles.text}>High Mystic, sacrifices his sanity to the Old Lords acquire power</Text>;
-    if (className == "Mercenary") return <Text style={styles.text}>Extreme high Hability, uses his high speed to land fast and deadly attacks</Text>;
-    if (className == "Priest") return <Text style={styles.text}>Extreme high Faith, call upon the power of the divine to burn the enemies with holy fire</Text>;
-    if (className == "Pyromancer") return <Text style={styles.text}>High Intelligence and Faith, consumes his own soul to generate fire spells</Text>;
-    if (className == "Sorcerer") return <Text style={styles.text}>Extreme high Intelligence, uses arcane magic as the main weapon</Text>;
-    if (className == "Warrior") return <Text style={styles.text}>High Strength and Vitality, uses heavy weapons to bash the enemies</Text>;
+    let text = "";
+    if (className === "Cultist") text = "High Mystic, sacrifices his sanity to the Old Lords acquire power";
+    if (className === "Mercenary") text = "Extreme high Hability, uses his high speed to land fast and deadly attacks";
+    if (className === "Priest") text = "Extreme high Faith, call upon the power of the divine to burn the enemies with holy fire";
+    if (className === "Pyromancer") text = "High Intelligence and Faith, consumes his own soul to generate fire spells";
+    if (className === "Sorcerer") text = "Extreme high Intelligence, uses arcane magic as the main weapon";
+    if (className === "Warrior") text = "High Strength and Vitality, uses heavy weapons to bash the enemies";
+
+    return <Text style={[styles.text, { paddingBottom: 20 }]}>{text}</Text>;
   }
 
   let classDescription;
@@ -43,9 +47,7 @@ export default function SelectClass({ navigation }) {
         <Text style={[styles.title, { marginTop: 5, marginBottom: 5 }]}>{selectedClass}</Text>
         {classText(selectedClass)}
         <View style={Styles.colCenter}>
-          <TouchableHighlight onPress={() => chooseClass(selectedClass)} style={styles.button}>
-            <Text style={[styles.title, { marginTop: 20, marginBottom: 10 }]}>BEGIN</Text>
-          </TouchableHighlight>
+          <Button text="BEGIN" textColor={Colors.white} width={110} height={70} fontSize={Sizes.big} backgroundColor={Colors.darkPurple} onPress={() => chooseClass(selectedClass)} />
         </View>
       </View>
     );
@@ -54,13 +56,6 @@ export default function SelectClass({ navigation }) {
   return (
     <View style={Styles.darkBackground}>
       <Text style={[styles.title, { marginTop: 20, marginBottom: 10 }]}>Choose your class</Text>
-      {/* <Button title="WARRIOR" onPress={() => chooseClass("warrior")} />
-      <Button title="MERCENARY" onPress={() => chooseClass("mercenary")} />
-      <Button title="PYROMANCER" onPress={() => chooseClass("pyromancer")} />
-      <Button title="SORCERER" onPress={() => chooseClass("sorcerer")} />
-      <Button title="PRIEST" onPress={() => chooseClass("priest")} />
-      <Button title="CULTIST" onPress={() => chooseClass("cultist")} />
-      <Button title="TANTO FAZ BIXO" onPress={() => navigation.navigate("LevelUp")} /> */}
       <View style={Styles.colCenter}>
         <View style={Styles.rowCenter}>
           <TouchableHighlight onPress={() => setSelectedClass("Warrior")}>
@@ -104,10 +99,5 @@ const styles = StyleSheet.create({
     fontFamily: "Cinzel-Regular",
     color: Colors.white,
     textAlign: "center",
-  },
-  button: {
-    marginTop: 10,
-    width: 100,
-    height: 70,
   },
 });
