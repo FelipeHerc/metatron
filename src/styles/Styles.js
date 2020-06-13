@@ -11,7 +11,7 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.purple,
     padding: 4,
-    paddingTop: 30
+    paddingTop: 38
   },
   colCenter: {
     flexDirection: 'column',

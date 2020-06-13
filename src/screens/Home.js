@@ -4,7 +4,6 @@ import Styles from '../styles/Styles'
 import Colors from '../styles/Colors'
 import Sizes from '../styles/Sizes'
 import Button from '../components/Button'
-import { FontAwesome } from '@expo/vector-icons'
 import Equipament from '../screens/Equipament'
 
 function Home ({ navigation }) {
@@ -21,16 +20,8 @@ function Home ({ navigation }) {
         visible={modalVisible}
       >
         <View style={Styles.modal}>
-          <View style={style.closeButton}>
-            <TouchableHighlight
-              onPress={() => {
-                setModalVisible(!modalVisible)
-              }}>
-              <FontAwesome name="close" size={26} color={Colors.grayPurple}/>
-            </TouchableHighlight>
-          </View>
           <View>
-              <Equipament/>
+            <Equipament closeButtonFunction={() => setModalVisible(!modalVisible)}/>
           </View>
         </View>
       </Modal>
@@ -38,13 +29,6 @@ function Home ({ navigation }) {
   )
 }
 
-const style = StyleSheet.create({
-  closeButton: {
-    position: 'absolute',
-    right: 10,
-    top: 32
-  }
 
-})
 
 export default Home
