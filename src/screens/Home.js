@@ -1,50 +1,50 @@
-import React, { useState } from "react";
-import { Modal, View, Text, TouchableHighlight } from "react-native";
-import Styles from "../styles/Styles";
-import Colors from "../styles/Colors";
-import Sizes from "../styles/Sizes";
-import Button from "../components/Button";
+import React, { useState } from 'react'
+import { View, Modal, StyleSheet, TouchableHighlight } from 'react-native'
+import Styles from '../styles/Styles'
+import Colors from '../styles/Colors'
+import Sizes from '../styles/Sizes'
+import Button from '../components/Button'
+import { FontAwesome } from '@expo/vector-icons'
+import Equipament from '../screens/Equipament'
 
-function Home({ navigation }) {
-  const [modalVisible, setModalVisible] = useState(false);
+function Home ({ navigation }) {
+  const [modalVisible, setModalVisible] = useState(false)
+
   return (
     <View style={Styles.darkBackground}>
-      <Button text="Level Up" textColor={Colors.white} fontSize={Sizes.big} width={150} height={70} backgroundColor={Colors.darkPurple} onPress={() => navigation.navigate("LevelUp")} />
-
-      <Button text="Reset" textColor={Colors.white} fontSize={Sizes.big} width={150} height={70} backgroundColor={Colors.darkPurple} onPress={() => navigation.navigate("LevelUp")} />
-
-      {/* <Modal
-                animationType="slide"
-                transparent={false}
-                visible={modalVisible}
-                onRequestClose={() => {
-                    Alert.alert('Modal has been closed.');
-                }}>
-                <View style={[Styles.darkBackground, { paddingTop: 22 }]}>
-                    <View>
-                        <Text>Hello World!</Text>
-
-                        <TouchableHighlight
-                            onPress={() => {
-                                setModalVisible(!modalVisible);
-                            }}>
-                            <Text>Hide Modal</Text>
-                        </TouchableHighlight>
-                    </View>
-                </View>
-            </Modal>
-            <Text>
-                joojinho
-            </Text>
-            
+      <Button text="Level Up" textColor={Colors.white} fontSize={Sizes.big} width={150} height={70} backgroundColor={Colors.grayPurple} onPress={() => navigation.navigate('LevelUp')} />
+      <Button text="Reset" textColor={Colors.white} fontSize={Sizes.big} width={150} height={70} backgroundColor={Colors.grayPurple} onPress={() => navigation.navigate('LevelUp')} />
+      <Button text="Equip" textColor={Colors.white} fontSize={Sizes.big} width={150} height={70} backgroundColor={Colors.grayPurple} onPress={() => setModalVisible(!modalVisible)} />
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}
+      >
+        <View style={Styles.modal}>
+          <View style={style.closeButton}>
             <TouchableHighlight
-                onPress={() => {
-                    setModalVisible(true);
-                }}>
-                <Text>Show Modal</Text>
-            </TouchableHighlight> */}
+              onPress={() => {
+                setModalVisible(!modalVisible)
+              }}>
+              <FontAwesome name="close" size={26} color={Colors.grayPurple}/>
+            </TouchableHighlight>
+          </View>
+          <View>
+              <Equipament/>
+          </View>
+        </View>
+      </Modal>
     </View>
-  );
+  )
 }
 
-export default Home;
+const style = StyleSheet.create({
+  closeButton: {
+    position: 'absolute',
+    right: 10,
+    top: 32
+  }
+
+})
+
+export default Home
