@@ -24,8 +24,6 @@ const initialState = {
 }
 
 export default function charAttributes (state = initialState, action) {
-  console.log(state);
-  
   switch (action.type) {
     case 'LVL_UP_VITALITY':
       return {
@@ -154,7 +152,7 @@ export default function charAttributes (state = initialState, action) {
           knowledge: action.bonus.knowledge ? state.stats.knowledge + action.bonus.knowledge : state.stats.knowledge,
           defense: action.bonus.defense ? state.stats.defense + action.bonus.defense : state.stats.defense,
           attack: action.bonus.attack ? state.stats.attack + action.bonus.attack : state.stats.attack,
-          luck: action.bonus.luck ? state.stats.luck + action.bonus.luck : state.stats.luck,
+          luck: action.bonus.luck ? state.stats.luck + action.bonus.luck : state.stats.luck
         }
       }
 
@@ -169,7 +167,7 @@ export default function charAttributes (state = initialState, action) {
           knowledge: action.bonus.knowledge ? state.stats.knowledge - action.bonus.knowledge : state.stats.knowledge,
           defense: action.bonus.defense ? state.stats.defense - action.bonus.defense : state.stats.defense,
           attack: action.bonus.attack ? state.stats.attack - action.bonus.attack : state.stats.attack,
-          luck: action.bonus.luck ? state.stats.luck - action.bonus.luck : state.stats.luck,
+          luck: action.bonus.luck ? state.stats.luck - action.bonus.luck : state.stats.luck
         }
       }
 

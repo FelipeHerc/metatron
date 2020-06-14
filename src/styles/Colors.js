@@ -3,7 +3,8 @@ const Colors = {
   black: '#000000',
   white: '#FFFFFF',
   grayPurple: '#44475a',
-  cyan: '#8be9fd'
+  cyan: '#8be9fd',
+  green: '#50fa7b'
 }
 
 export default Colors
