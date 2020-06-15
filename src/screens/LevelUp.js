@@ -400,7 +400,7 @@ export default function LevelUp ({ navigation }) {
         title="DEIXA EU ESCOLHE A CLASSE PO"
         onPress={() => {
           levelReset()
-          navigation.navigate('SelectClass')
+          navigation.pop()
         }}
       />
     </View>

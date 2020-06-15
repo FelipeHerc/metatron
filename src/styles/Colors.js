@@ -4,7 +4,7 @@ const Colors = {
   white: '#FFFFFF',
   grayPurple: '#44475a',
   cyan: '#8be9fd',
-  green: '#50fa7b'
+  orange: '#ffb86c'
 }
 
 export default Colors

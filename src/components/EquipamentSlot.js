@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native'
 import Colors from '../styles/Colors'
 
 export default function EquipamentSlot (props) {
-  const backgroundColor = props.active ? Colors.green : Colors.grayPurple
+  const backgroundColor = props.active ? Colors.orange : Colors.grayPurple
   const styles = StyleSheet.create({
     slot: {
       borderRadius: 3,
