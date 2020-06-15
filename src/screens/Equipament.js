@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Crypto, View, StyleSheet, TouchableHighlight, TouchableOpacity } from 'react-native'
+import { Crypto, View, StyleSheet, TouchableOpacity } from 'react-native'
 import Styles from '../styles/Styles'
 import Colors from '../styles/Colors'
 import Sizes from '../styles/Sizes'
@@ -24,20 +24,18 @@ export default function Equipament ({ navigation, closeButtonFunction }) {
   const [touchedItemKey, setTouchedItemKey] = useState(false)
   const [touchedItemType, setTouchedItemType] = useState(false)
 
-  console.log(touchedItemType)
-  console.log(touchedItem)
-
-  function equip (slot, equipament) {
-    if (equipamentsOnChar[slot]) { unequip(slot, Weapons[equipamentsOnChar[slot]]) }
-
-    dispatch({ type: 'EQUIP_RIGHT_HAND', equipament: equipament })
+  function equip (slotType, equipament) {
+    untouchItem()
     dispatch({ type: 'GAIN_BONUS', bonus: equipament.bonus })
+    dispatch({ type: 'EQUIP', slot: slotType, equipament: equipament })
+    dispatch({ type: 'REMOVE_EQUIPAMENT', key: equipament.key })
   }
 
-  function unequip (slot, equipament) {
-    if (!equipamentsOnChar[slot]) { return }
-    dispatch({ type: 'UNEQUIP_RIGHT_HAND' })
+  function unequip (slotType, equipament) {
+    if (!equipamentsOnChar[slotType]) { return }
     dispatch({ type: 'LOSE_BONUS', bonus: equipament.bonus })
+    dispatch({ type: 'UNEQUIP', slot: slotType })
+    dispatch({ type: 'ADD_EQUIPAMENT', equipament: equipament })
   }
 
   function untouchItem () {
@@ -54,10 +52,19 @@ export default function Equipament ({ navigation, closeButtonFunction }) {
     setTouchedItemType(itemType)
   }
 
-  function equipItem (slotType) {
+  function pressEquipSlot (slotType) {
+    if (!touchedItem) return unequip(slotType, equipamentsOnChar[slotType])
+
     if (touchedItemType !== slotType) return untouchItem()
 
-    else console.log('foi')
+    if (equipamentsOnChar[slotType]) return swapItens(slotType)
+
+    equip(slotType, touchedItem)
+  }
+
+  function swapItens (slotType) {
+    unequip(slotType, equipamentsOnChar[slotType])
+    equip(slotType, touchedItem)
   }
 
   function equipamentIcon (slot) {
@@ -82,67 +89,67 @@ export default function Equipament ({ navigation, closeButtonFunction }) {
   return (
     <View>
       <View style={styles.closeButton}>
-        <TouchableHighlight onPress={() => closeButtonFunction()}>
+        <TouchableOpacity onPress={() => closeButtonFunction()}>
           <FontAwesome name="close" size={26} color={Colors.grayPurple} />
-        </TouchableHighlight>
+        </TouchableOpacity>
       </View>
       <View style={styles.row}>
         <View style={styles.row}>
-          <TouchableOpacity onPress={() => equipItem('helm')}>
-            <EquipamentSlot active={touchedItemType === 'helm'}/>
+          <TouchableOpacity onPress={() => pressEquipSlot('helm')}>
+            <EquipamentSlot active={touchedItemType === 'helm'}>
+              {equipamentsOnChar.helm && <Helm width={60} height={60} color={Colors.cyan}/>}
+            </EquipamentSlot>
           </TouchableOpacity>
           <Helm width={60} height={60} color={Colors.cyan}/>
         </View>
         <View style={styles.row}>
-          <TouchableOpacity onPress={() => equipItem('rightHand')}>
-            <EquipamentSlot active={touchedItemType === 'rightHand'}/>
+          <TouchableOpacity onPress={() => pressEquipSlot('rightHand')}>
+            <EquipamentSlot active={touchedItemType === 'rightHand'}>
+              {equipamentsOnChar.rightHand && <Sword width={60} height={60} color={Colors.cyan}/>}
+            </EquipamentSlot>
           </TouchableOpacity>
           <Sword width={60} height={60} color={Colors.cyan} />
         </View>
       </View>
       <View style={styles.row}>
         <View style={styles.row}>
-          <TouchableOpacity onPress={() => equipItem('armor')}>
-            <EquipamentSlot active={touchedItemType === 'armor'}/>
+          <TouchableOpacity onPress={() => pressEquipSlot('armor')}>
+            <EquipamentSlot active={touchedItemType === 'armor'}>
+              {equipamentsOnChar.armor && <Armor width={60} height={60} color={Colors.cyan}/>}
+            </EquipamentSlot>
           </TouchableOpacity>
           <Armor width={60} height={60} color={Colors.cyan} />
         </View>
         <View style={styles.row}>
-          <TouchableOpacity onPress={() => equipItem('gloves')}>
-            <EquipamentSlot active={touchedItemType === 'gloves'}/>
+          <TouchableOpacity onPress={() => pressEquipSlot('gloves')}>
+            <EquipamentSlot active={touchedItemType === 'gloves'}>
+              {equipamentsOnChar.gloves && <Gloves width={60} height={60} color={Colors.cyan}/>}
+            </EquipamentSlot>
           </TouchableOpacity>
           <Gloves width={60} height={60} color={Colors.cyan} />
         </View>
       </View>
       <View style={styles.row}>
         <View style={styles.row}>
-          <TouchableOpacity onPress={() => equipItem('legging')}>
-            <EquipamentSlot active={touchedItemType === 'legging'}/>
+          <TouchableOpacity onPress={() => pressEquipSlot('legging')}>
+            <EquipamentSlot active={touchedItemType === 'legging'}>
+              {equipamentsOnChar.legging && <Legging width={60} height={60} color={Colors.cyan}/>}
+            </EquipamentSlot>
           </TouchableOpacity>
           <Legging width={60} height={60} color={Colors.cyan} />
         </View>
         <View style={styles.row}>
-          <TouchableOpacity onPress={() => equipItem('boots')}>
-            <EquipamentSlot active={touchedItemType === 'boots'}/>
+          <TouchableOpacity onPress={() => pressEquipSlot('boots')}>
+            <EquipamentSlot active={touchedItemType === 'boots'}>
+              {equipamentsOnChar.boots && <Boots width={60} height={60} color={Colors.cyan}/>}
+            </EquipamentSlot>
           </TouchableOpacity>
           <Boots width={60} height={60} color={Colors.cyan} />
         </View>
       </View>
-      {/* <Button text="Equip 1" textColor={Colors.white} fontSize={Sizes.big} width={150} height={70} backgroundColor={Colors.grayPurple} onPress={() => equip('rightHand', Weapons.ShortSword)} />
-      <Button text="UnEquip 1" textColor={Colors.white} fontSize={Sizes.big} width={150} height={70} backgroundColor={Colors.grayPurple} onPress={() => unequip('rightHand', Weapons.ShortSword)} />
-      <Button text="Equip 2" textColor={Colors.white} fontSize={Sizes.big} width={150} height={70} backgroundColor={Colors.grayPurple} onPress={() => equip('rightHand', Weapons.BFB)} />
-      <Button text="UnEquip 2" textColor={Colors.white} fontSize={Sizes.big} width={150} height={70} backgroundColor={Colors.grayPurple} onPress={() => unequip('rightHand', Weapons.BFB)} />
-      <Button text="Voltar" textColor={Colors.white} fontSize={Sizes.big} width={150} height={70} backgroundColor={Colors.grayPurple} onPress={() => navigation.pop()} /> */}
       <View style={{ justifyContent: 'center', flexDirection: 'row', width: 400, flexWrap: 'wrap' }}>
         {equipamentList}
       </View>
-      {/* { items.equipaments.map(item => (
-        console.log(item)
-        // <TouchableOpacity key={item.key} style={styles.slot} onPress={() => touchItem(item.key)} onLongPress={() => console.log('long')}>
-        //   <EquipamentSlot active={touchedItemKey === item}/>
-        // </TouchableOpacity>
-      )) } */}
-
     </View>
   )
 }
