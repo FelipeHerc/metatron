@@ -1,10 +1,10 @@
-import vitality from "../attributes/Vitality";
-import energy from "../attributes/Energy";
-import strength from "../attributes/Strength";
-import hability from "../attributes/Hability";
-import intelligence from "../attributes/Intelligence";
-import faith from "../attributes/Faith";
-import mystic from "../attributes/Mystic";
+import vitality from '../attributes/Vitality'
+import energy from '../attributes/Energy'
+import strength from '../attributes/Strength'
+import hability from '../attributes/Hability'
+import intelligence from '../attributes/Intelligence'
+import faith from '../attributes/Faith'
+import mystic from '../attributes/Mystic'
 
 const StatusOnLvlUp = {
   vitality: vitality,
@@ -13,7 +13,7 @@ const StatusOnLvlUp = {
   hability: hability,
   intelligence: intelligence,
   faith: faith,
-  mystic: mystic,
-};
+  mystic: mystic
+}
 
-export default StatusOnLvlUp;
+export default StatusOnLvlUp

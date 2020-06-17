@@ -1,10 +1,6 @@
 import React, { useState } from 'react'
-import { Crypto, View, StyleSheet, TouchableOpacity } from 'react-native'
-import Styles from '../styles/Styles'
+import { View, StyleSheet, TouchableOpacity, ScrollView } from 'react-native'
 import Colors from '../styles/Colors'
-import Sizes from '../styles/Sizes'
-import Button from '../components/Button'
-import Weapons from '../equipaments/weapons'
 import { useDispatch, useSelector } from 'react-redux'
 import { FontAwesome } from '@expo/vector-icons'
 import EquipamentSlot from '../components/EquipamentSlot'
@@ -15,7 +11,7 @@ import Gloves from '../../assets/icons/gloves.svg'
 import Boots from '../../assets/icons/boots.svg'
 import Sword from '../../assets/icons/sword.svg'
 
-export default function Equipament ({ navigation, closeButtonFunction }) {
+export default function Bag ({ navigation, closeButtonFunction }) {
   const dispatch = useDispatch()
   const equipamentsOnChar = useSelector((state) => state.equipament)
   const items = useSelector((state) => state.items.equipaments)
@@ -88,11 +84,6 @@ export default function Equipament ({ navigation, closeButtonFunction }) {
 
   return (
     <View>
-      <View style={styles.closeButton}>
-        <TouchableOpacity onPress={() => closeButtonFunction()}>
-          <FontAwesome name="close" size={26} color={Colors.grayPurple} />
-        </TouchableOpacity>
-      </View>
       <View style={styles.row}>
         <View style={styles.row}>
           <TouchableOpacity onPress={() => pressEquipSlot('helm')}>
@@ -147,9 +138,11 @@ export default function Equipament ({ navigation, closeButtonFunction }) {
           <Boots width={60} height={60} color={Colors.cyan} />
         </View>
       </View>
-      <View style={{ justifyContent: 'center', flexDirection: 'row', width: 400, flexWrap: 'wrap' }}>
-        {equipamentList}
-      </View>
+      <ScrollView>
+        <View style={{ justifyContent: 'center', flexDirection: 'row', width: 400, flexWrap: 'wrap' }}>
+          {equipamentList}
+        </View>
+      </ScrollView>
     </View>
   )
 }
@@ -161,10 +154,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: 140,
     padding: 4
-  },
-  closeButton: {
-    position: 'absolute',
-    right: 10
   },
   slot: {
     margin: 3,

@@ -5,7 +5,7 @@ import StatusBar from './components/StatusBar'
 import LevelUp from './screens/LevelUp'
 import Home from './screens/Home'
 import SelectClass from './screens/SelectClass'
-import Equipament from './screens/Equipament'
+import Bag from './screens/Bag'
 import { useSelector } from 'react-redux'
 
 const Stack = createStackNavigator()
@@ -21,7 +21,7 @@ export default function Routes () {
         <Stack.Screen name="SelectClass" component={SelectClass} />
         <Stack.Screen name="LevelUp" component={LevelUp} />
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Equipament" component={Equipament} />
+        <Stack.Screen name="Bag" component={Bag} />
       </Stack.Navigator>
     </NavigationContainer>
   )
