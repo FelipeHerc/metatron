@@ -20,27 +20,27 @@ export default function Bag ({ navigation, closeButtonFunction }) {
   const [touchedItemKey, setTouchedItemKey] = useState(false)
   const [touchedItemType, setTouchedItemType] = useState(false)
 
-  function equip (slotType, equipament) {
+  const equip = (slotType, equipament) => {
     untouchItem()
     dispatch({ type: 'GAIN_BONUS', bonus: equipament.bonus })
     dispatch({ type: 'EQUIP', slot: slotType, equipament: equipament })
     dispatch({ type: 'REMOVE_EQUIPAMENT', key: equipament.key })
   }
 
-  function unequip (slotType, equipament) {
+  const unequip = (slotType, equipament) => {
     if (!equipamentsOnChar[slotType]) { return }
     dispatch({ type: 'LOSE_BONUS', bonus: equipament.bonus })
     dispatch({ type: 'UNEQUIP', slot: slotType })
     dispatch({ type: 'ADD_EQUIPAMENT', equipament: equipament })
   }
 
-  function untouchItem () {
+  const untouchItem = () => {
     setTouchedItem(false)
     setTouchedItemKey(false)
     setTouchedItemType(false)
   }
 
-  function touchItem (item, itemKey, itemType) {
+  const touchItem = (item, itemKey, itemType) => {
     if (touchedItemKey) return untouchItem()
 
     setTouchedItem(item)
@@ -48,7 +48,7 @@ export default function Bag ({ navigation, closeButtonFunction }) {
     setTouchedItemType(itemType)
   }
 
-  function pressEquipSlot (slotType) {
+  const pressEquipSlot = (slotType) => {
     if (!touchedItem) return unequip(slotType, equipamentsOnChar[slotType])
 
     if (touchedItemType !== slotType) return untouchItem()
@@ -58,12 +58,12 @@ export default function Bag ({ navigation, closeButtonFunction }) {
     equip(slotType, touchedItem)
   }
 
-  function swapItens (slotType) {
+  const swapItens = (slotType) => {
     unequip(slotType, equipamentsOnChar[slotType])
     equip(slotType, touchedItem)
   }
 
-  function equipamentIcon (slot) {
+  const equipamentIcon = (slot) => {
     if (slot === 'helm') return <Helm width={60} height={60} color={Colors.cyan} />
     if (slot === 'armor') return <Armor width={60} height={60} color={Colors.cyan} />
     if (slot === 'legging') return <Legging width={60} height={60} color={Colors.cyan} />

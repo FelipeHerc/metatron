@@ -14,7 +14,7 @@ export default function SelectClass ({ navigation }) {
 
   const [selectedClass, setSelectedClass] = useState()
 
-  function chooseClass (charClass) {
+  const chooseClass = (charClass) => {
     const chosenClass = charClass.toLowerCase()
     for (var i = 0; i < Object.keys(Classes[chosenClass]).length; i++) {
       const stat = Object.keys(Classes[chosenClass])[i]
@@ -28,7 +28,7 @@ export default function SelectClass ({ navigation }) {
     navigation.navigate('Home')
   }
 
-  function classText (className) {
+  const classText = (className) => {
     let text = ''
     if (className === 'Cultist') text = 'High Mystic, sacrifices his sanity to the Old Lords acquire power'
     if (className === 'Mercenary') text = 'Extreme high Hability, uses his high speed to land fast and deadly attacks'

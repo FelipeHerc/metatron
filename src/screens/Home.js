@@ -6,7 +6,7 @@ import Sizes from '../styles/Sizes'
 import Button from '../components/Button'
 import Bag from './Bag'
 
-function Home ({ navigation }) {
+export default function Home ({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false)
 
   return (
@@ -28,5 +28,3 @@ function Home ({ navigation }) {
     </View>
   )
 }
-
-export default Home

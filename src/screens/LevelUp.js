@@ -43,7 +43,7 @@ export default function LevelUp ({ navigation }) {
     setNextLevelCost(ChakraOnLevelUp[nextLevel])
   }, [nextLevel])
 
-  function prepareToLevelUp () {
+  const prepareToLevelUp = () => {
     if (vitality) {
       for (var i = 0; i < vitality - charAttributes.attributes.vitality; i++) levelUp('VITALITY')
       setVitality(false)
@@ -83,13 +83,13 @@ export default function LevelUp ({ navigation }) {
     setSpentChackra(0)
   }
 
-  function levelUp (attribute) {
+  const levelUp = (attribute) => {
     dispatch({ type: 'LEVEL_UP_USING_CURRENCY', level: charAttributes.level })
     dispatch({ type: `LVL_UP_${attribute}` })
     statsReset()
   }
 
-  function statsReset () {
+  const statsReset = () => {
     setHp(false)
     setStamina(false)
     setMana(false)
@@ -99,7 +99,7 @@ export default function LevelUp ({ navigation }) {
     setLuck(false)
   }
 
-  function attributesReset () {
+  const attributesReset = () => {
     setVitality(false)
     setEnergy(false)
     setStrength(false)
@@ -111,13 +111,13 @@ export default function LevelUp ({ navigation }) {
     setSpentChackra(0)
   }
 
-  function levelReset () {
+  const levelReset = () => {
     dispatch({ type: 'LVL_RESET' })
     attributesReset()
-    statsReset
+    statsReset()
   }
 
-  function touchAttribute (attribute) {
+  const touchAttribute = (attribute) => {
     switch (attribute) {
       case 'vitality':
         if (vitality) {
@@ -194,7 +194,7 @@ export default function LevelUp ({ navigation }) {
     }
   }
 
-  function statsGainOnLevelUp () {
+  const statsGainOnLevelUp = () => {
     var newHp = 0
     var newStamina = 0
     var newMana = 0
@@ -262,7 +262,7 @@ export default function LevelUp ({ navigation }) {
     setLuck(newLuck)
   }
 
-  function denyLevelUp (attribute) {
+  const denyLevelUp = (attribute) => {
     return nextLevelCost + spentChackra > chakra.chakra
   }
 

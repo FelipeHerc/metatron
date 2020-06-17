@@ -9,7 +9,7 @@ import Pyromancer from '../../assets/class_icons/pyromancer.svg'
 import Sorcerer from '../../assets/class_icons/sorcerer.svg'
 import Warrior from '../../assets/class_icons/warrior.svg'
 
-function ClassIcon (className) {
+const ClassIcon = (className) => {
   if (className === 'Cultist') return <Cultist width='140' height='140' style={styles.icon} />
   if (className === 'Mercenary') return <Mercenary width='140' height='140' style={styles.icon} />
   if (className === 'Priest') return <Priest width='140' height='140' style={styles.icon} />
