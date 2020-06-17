@@ -399,7 +399,6 @@ export default function LevelUp ({ navigation }) {
       <Button
         title="DEIXA EU ESCOLHE A CLASSE PO"
         onPress={() => {
-          levelReset()
           navigation.pop()
         }}
       />

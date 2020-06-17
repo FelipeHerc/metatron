@@ -8,6 +8,7 @@ import Sizes from '../styles/Sizes'
 import Colors from '../styles/Colors'
 import { TouchableHighlight } from 'react-native-gesture-handler'
 import Button from '../components/Button'
+import charEquipaments from '../charEquipaments/charEquipaments'
 
 export default function SelectClass ({ navigation }) {
   const dispatch = useDispatch()
@@ -25,6 +26,14 @@ export default function SelectClass ({ navigation }) {
       }
     }
     dispatch({ type: 'CHOOSE_CLASS', class: chosenClass })
+
+    Object.keys(charEquipaments[chosenClass]).forEach((equipament) => {
+      const equip = charEquipaments[chosenClass][equipament]
+      const slot = charEquipaments[chosenClass][equipament].slot
+      dispatch({ type: 'EQUIP', slot: slot, equipament: equip })
+      dispatch({ type: 'GAIN_BONUS', bonus: equip.bonus })
+    })
+
     navigation.navigate('Home')
   }
 
