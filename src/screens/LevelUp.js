@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
-import StatsOnLevelUp from '../char_specs/StatsOnLevelUp'
-import ChakraOnLevelUp from '../char_specs/ChakraOnLevelUp'
+import StatsOnLevelUp from '../logic/charSpecs/StatsOnLevelUp'
+import ChakraOnLevelUp from '../logic/charSpecs/ChakraOnLevelUp'
 import AttributeLevelUp from '../components/AttributeLevelUp'
 
 export default function LevelUp ({ navigation }) {

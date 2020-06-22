@@ -1,4 +1,4 @@
-import { MD5 } from '../utils/GenerateHashes'
+import { MD5 } from '../../utils/GenerateHashes'
 
 const charEquipaments = {
   warrior: {

@@ -1,4 +1,4 @@
-import StatsOnLevelUp from '../char_specs/StatsOnLevelUp'
+import StatsOnLevelUp from '../logic/charSpecs/StatsOnLevelUp'
 
 const initialState = {
   class: 'hollow',

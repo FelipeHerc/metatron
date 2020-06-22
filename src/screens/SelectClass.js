@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { useDispatch } from 'react-redux'
-import Classes from '../char_specs/Classes'
+import Classes from '../logic/charSpecs/Classes'
 import ClassCard from '../components/ClassCard'
 import Styles from '../styles/Styles'
 import Sizes from '../styles/Sizes'
 import Colors from '../styles/Colors'
 import { TouchableHighlight } from 'react-native-gesture-handler'
 import Button from '../components/Button'
-import charEquipaments from '../charEquipaments/charEquipaments'
+import charEquipaments from '../logic/charEquipaments/charEquipaments'
 
 export default function SelectClass ({ navigation }) {
   const dispatch = useDispatch()
