@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, TouchableOpacity, ScrollView } from 'react-native'
+import { View, StyleSheet, TouchableOpacity, ScrollView, Modal } from 'react-native'
 import Colors from '../styles/Colors'
 import { useDispatch, useSelector } from 'react-redux'
-import { FontAwesome } from '@expo/vector-icons'
 import EquipamentSlot from '../components/EquipamentSlot'
 import Helm from '../../assets/icons/helm.svg'
 import Armor from '../../assets/icons/armor.svg'
@@ -10,12 +9,16 @@ import Legging from '../../assets/icons/legging.svg'
 import Gloves from '../../assets/icons/gloves.svg'
 import Boots from '../../assets/icons/boots.svg'
 import Sword from '../../assets/icons/sword.svg'
+import Styles from '../styles/Styles'
+import EquipamentModal from '../components/EquipamentModal'
 
-export default function Bag ({ navigation, closeButtonFunction }) {
+export default function Bag () {
   const dispatch = useDispatch()
   const equipamentsOnChar = useSelector((state) => state.equipament)
   const items = useSelector((state) => state.items.equipaments)
 
+  const [equipamentOnModal, setEquipamentOnModal] = useState(false)
+  const [modalVisible, setModalVisible] = useState(false)
   const [touchedItem, setTouchedItem] = useState(false)
   const [touchedItemKey, setTouchedItemKey] = useState(false)
   const [touchedItemType, setTouchedItemType] = useState(false)
@@ -72,9 +75,19 @@ export default function Bag ({ navigation, closeButtonFunction }) {
     if (slot === 'rightHand') return <Sword width={60} height={60} color={Colors.cyan} />
   }
 
+  const equipamentDetails = (key) => {
+    setEquipamentOnModal(items[key])
+    setModalVisible(!modalVisible)
+  }
+
   const equipamentList = Object.keys(items).map((obj) => {
     return (
-      <TouchableOpacity key={items[obj].key} style={styles.slot} onPress={() => touchItem(items[obj], items[obj].key, items[obj].slot)} onLongPress={() => console.log('longaa')}>
+      <TouchableOpacity
+        key={items[obj].key}
+        style={styles.slot}
+        onPress={() => touchItem(items[obj], items[obj].key, items[obj].slot)}
+        onLongPress={() => equipamentDetails(items[obj].key)}
+      >
         <EquipamentSlot active={touchedItemKey === items[obj].key}>
           {equipamentIcon(items[obj].slot)}
         </EquipamentSlot>
@@ -143,6 +156,23 @@ export default function Bag ({ navigation, closeButtonFunction }) {
           {equipamentList}
         </View>
       </ScrollView>
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}
+      >
+        <View style={Styles.modal}>
+          <EquipamentModal
+            closeButtonFunction={
+              () => {
+                setModalVisible(!modalVisible)
+                setEquipamentOnModal(false)
+              }
+            }
+            equipament={equipamentOnModal}
+          />
+        </View>
+      </Modal>
     </View>
   )
 }
@@ -162,5 +192,10 @@ const styles = StyleSheet.create({
     height: 70,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  closeButton: {
+    position: 'absolute',
+    right: 10
+    // top: 40
   }
 })
